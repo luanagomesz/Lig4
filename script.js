@@ -1,3 +1,38 @@
+//eventos menu
+document.getElementById("jogar").addEventListener("click", function(){
+   let interval = setInterval(iniciarjogo, 150)
+   function iniciarjogo(){
+    document.getElementById("menu").style.display = "none"
+    document.getElementById("gameSpace").style.display = "flex"
+    document.getElementById("voltar").style.display = "block"
+    clearInterval(interval);
+}
+})
+
+
+document.getElementById("buttonInstruções").addEventListener("click", function(){
+    let interval = setInterval(instruções, 150)
+    function instruções(){
+        document.getElementById("menu").style.display = "none"
+        document.getElementById("instruções").style.display = "flex"
+        document.getElementById("voltar").style.display = "block"
+        clearInterval(interval);
+    }
+    })
+
+document.getElementById("voltar").addEventListener("click", function(){
+    let interval = setInterval(voltar, 150)
+    function voltar(){
+        document.getElementById("menu").style.display = "flex"
+        document.getElementById("instruções").style.display = "none"
+        document.getElementById("gameSpace").style.display = "none"
+        document.getElementById("voltar").style.display = "none"
+        clearInterval(interval);
+    }
+    })
+
+    
+
 game = document.getElementById("gameSpace")
 
 // criando tabuleiro dinamicamente
