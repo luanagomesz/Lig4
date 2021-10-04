@@ -29,5 +29,17 @@ if(counterDisco % 2 == 0){
     disco.setAttribute("class", "discoPreto")
     return disco
     }
+    
+}
+// função captura o evento e alternar discos
+game.addEventListener('click', selecionar)
 
+function selecionar(e) {        
+    let tabela = e.target.parentElement
+    let criaDisco = CriarDisco()
+    for(let i = 5; i >= 0; i--){
+        if(tabela.children[i].childElementCount == 0){
+            tabela.children[i].appendChild(criaDisco)            
+        }        
+    }
 }
