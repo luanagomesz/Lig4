@@ -15,7 +15,7 @@ for( let i=1; i<=7;i++){
 }
 
 // função de criação de discos
-counterDisco = 1
+let counterDisco = 1
 
 function CriarDisco(){
 counterDisco++
@@ -29,5 +29,17 @@ if(counterDisco % 2 == 0){
     disco.setAttribute("class", "discoPreto")
     return disco
     }
+    
+}
+// função captura o evento e alternar discos
+game.addEventListener('click', selecionar)
 
+function selecionar(e) {        
+    let tabela = e.target.parentElement
+    let criaDisco = CriarDisco()
+    for(let i = 5; i >= 0; i--){
+        if(tabela.children[i].childElementCount == 0){
+            tabela.children[i].appendChild(criaDisco)            
+        }        
+    }
 }
