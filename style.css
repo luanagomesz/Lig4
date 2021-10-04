@@ -68,7 +68,6 @@ header h1{
 }
 #menu button{
     box-shadow: 3px 4px 0px 0px #8a2a21;
-	background:linear-gradient(to bottom, #c62d1f 5%, #f24437 100%);
 	background-color:#e26b61;
 	border-radius:8px;
 	border:1px solid #e26b61;
@@ -108,8 +107,7 @@ header h1{
     color: #e63120;;
    }
 #menu button:hover {
-	background:linear-gradient(to bottom, #f24437 5%, #c62d1f 100%);
-	background-color:#f24437;
+    background-color:#f24437;
 }
 #menu button:active {
 	position:relative;
@@ -135,7 +133,7 @@ header h1{
     margin-top: 30px;
     display: none;
     box-shadow: 3px 4px 0px 0px #8a2a21;
-	background:linear-gradient(to bottom, #c62d1f 5%, #f24437 100%);
+	
 	background-color:#e26b61;
 	border-radius:8px;
 	border:1px solid #e26b61;
@@ -149,7 +147,6 @@ header h1{
 	text-shadow:0px 1px 0px #810e05;
 }
 #voltar:hover {
-	background:linear-gradient(to bottom, #f24437 5%, #c62d1f 100%);
 	background-color:#f24437;
 }
 #voltar:active {
