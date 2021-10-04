@@ -15,7 +15,7 @@ for( let i=1; i<=7;i++){
 }
 
 // função de criação de discos
-counterDisco = 1
+let counterDisco = 1
 
 function CriarDisco(){
 counterDisco++
