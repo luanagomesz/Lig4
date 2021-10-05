@@ -72,9 +72,14 @@ game.addEventListener('click', selecionar)
 function selecionar(e) {        
     let tabela = e.target.parentElement
     let criaDisco = CriarDisco()
+    if(tabela.classList.contains("cedula")){
+      tabela = tabela.parentElement
+    }
     for(let i = 5; i >= 0; i--){
         if(tabela.children[i].childElementCount == 0){
             tabela.children[i].appendChild(criaDisco)            
         }        
     }
+  
 }
+
