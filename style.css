@@ -16,76 +16,75 @@ body{
     flex-direction: column-reverse;
 }
 .cedula{
-    height: 25px;
-    width: 25px;
+    height: 45px;
+    width: 45px;
     border: 1px solid #745151;
 
 }
 
 .discoVermelho{
     position: absolute;
-    width: 23px;
-    height: 23px;
-    border: 1px solid black;
-    border-radius: 100%;
-    background-color: #dfb3b3;
+    width: 50px;
+    height: 40px;
+    background-color: transparent;
+    image-rendering: optimizeQuality;
     animation-name: bolinha;
     animation-duration: 1s;
     animation-timing-function: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    transform: translateY(5px) translateX(-2px);;
 }
 
 .discoPreto{
     position: absolute;
-    width: 23px;
-    height: 23px;
-    border: 1px solid black;
-    border-radius: 100%;
-    background-color: rgb(65, 65, 65);
+    width: 50px;
+    height: 40px;
+    background-color: transparent;
     animation-name: bolinha;
     animation-duration: 1s;
     animation-timing-function: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    transform: translateY(5px) translateX(-2px);;
    
 }
 /*/ keyframes /*/
 @keyframes bolinha{
     0%{
-        transform: translateX(15%);
-        width: 18px;
-        height: 18px;
+        transform: translateX(5px);
+        width: 30px;
+        height: 20px;
         margin-top: -130px; 
-        padding-top: 0px;
     }
     20%{
-        transform: translateX(0%);
-        width: 23px;
-        height: 23px;
+        transform: translateX(-2px);
+        width: 50px;
+        height: 40px;
     }
     60%{
-        padding-top: 20px;
+        height: 65px;
     }
     80%{
-        padding-top: 0px;
+        height: 40px;
         margin-top: 0px; 
     }
     85%{
-        margin-top: -6px;
-        height: 21px;
-        width: 25px;
+       transform:translateY(9px) translateX(-6px);
+        height: 25px;
+        width: 60px;
     }
-    95%{
-        margin-top: 0px;
-        height: 23px;
-        width: 23px;
+    90%{
+        transform: translateY(5px) translateX(-2px);
+        margin-top:-10px;
+        height: 40px;
+        width: 50px;
     }
     98%{
         margin-top: -1px;
-        height: 22px;
-        width: 24px;
+        height: 39px;
+        width: 49px;
     }
     100%{
         margin-top: 0px;
-        height: 23px;
-        width: 23px;
+        height: 40px;
+        width: 50px;
     }
 }
 

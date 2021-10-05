@@ -55,12 +55,14 @@ let counterDisco = 1
 function CriarDisco(){
 counterDisco++
 if(counterDisco % 2 != 0){
-    let disco = document.createElement("div")
+    let disco = document.createElement("img")
+    disco.src = "catwhite.png"
     disco.setAttribute("class", "discoVermelho")
     return disco
 }
 if(counterDisco % 2 == 0){
-    let disco = document.createElement("div")
+    let disco = document.createElement("img")
+    disco.src = "catblack.png"
     disco.setAttribute("class", "discoPreto")
     return disco
     }
