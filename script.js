@@ -80,6 +80,16 @@ function selecionar(e) {
             tabela.children[i].appendChild(criaDisco)            
         }        
     }
-  
+
 }
 
+function criarMsg (){
+    let msgVitoria = document.createElement("span")
+    msgVitoria.setAttribute("id", "msgVitoria")
+    msgVitoria.innerText = "teste"
+    game.appendChild(msgVitoria)
+    
+    setTimeout(() => {
+        game.removeChild(msgVitoria)
+    }, 3000);
+}
