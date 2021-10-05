@@ -88,11 +88,12 @@ function selecionar(e) {
 
 function vitoriaDiagonal(){
     let array = game.children
-      for(let i=0;i<array.length;i++){
+      for(let i=0;i<array.length -3;i++){
      
         for(let k=0;k<array.length -3;k++){
             //diagonal esquerda
             cell = array[k].children[i]
+            console.log(array[k].children[i])
             if(cell.childElementCount !== 0){
                cell = cell.lastElementChild
 
