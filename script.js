@@ -80,6 +80,9 @@ function selecionar(e) {
             tabela.children[i].appendChild(criaDisco)            
         }        
     }
+  empate()
+  verificaH()
+  verificaV()
   vitoriaDiagonal()
 }
 
@@ -103,7 +106,12 @@ function vitoriaDiagonal(){
                  if(cell.classList.value == array[k+1].children[i+1].lastElementChild.classList.value  &&
                      cell.classList.value == array[k+2].children[i+2].lastElementChild.classList.value &&
                      cell.classList.value == array[k+3].children[i+3].lastElementChild.classList.value){
-
+                        
+                        if(cell.classList.value === "discoPreto"){
+                            criarMsg("disco preto")
+                        } else {
+                            criarMsg("disco vermelho")
+                        }
                    console.log('vrauu' + " " + cell.classList.value + " " + "Ganhou")
                }
             }
@@ -123,6 +131,11 @@ function vitoriaDiagonal(){
                          cellx.classList.value == array[x-2].children[i+2].lastElementChild.classList.value && 
                          cellx.classList.value == array[x-3].children[i+3].lastElementChild.classList.value){
 
+                            if(cellx.classList.value === "discoPreto"){
+                                criarMsg("disco preto")
+                            } else {
+                                criarMsg("disco vermelho")
+                            }
                       console.log('vrauu' + " " + cellx.classList.value + " " + "Ganhou")
                   }
                  }
@@ -130,3 +143,84 @@ function vitoriaDiagonal(){
              }
           }
          }
+
+
+
+
+         function verificaH(){
+            let tabela = [...game.children]
+            for(let i = 0; i < tabela.length ; i++){
+                for(let j = 0; j < tabela.length -3 ; j++) {
+                  let cell = tabela[j].children[i]
+                  if(cell === undefined)continue
+                  let cellCount = cell.childElementCount
+                  if(cellCount !== 0) {
+                      let cell2 = tabela[j+1].children[i]
+                      let cell3 = tabela[j+2].children[i]
+                      let cell4 = tabela[j+3].children[i]
+                    if((cell2.childElementCount !==0 && cell3.childElementCount !==0 && cell4.childElementCount !==0) &&
+                        (cell.lastElementChild.classList.value === cell2.lastElementChild.classList.value &&
+                         cell.lastElementChild.classList.value === cell3.lastElementChild.classList.value &&
+                         cell.lastElementChild.classList.value === cell4.lastElementChild.classList.value) ) {
+
+                            if(cell.lastElementChild.classList.value === "discoPreto"){
+                                criarMsg("disco preto")
+                            } else {
+                                criarMsg("disco vermelho")
+                            }
+                            console.log("aleluiahorizontal");
+                    }
+                 }
+                }
+              }
+        }
+        
+        function verificaV(){
+            let tabela = [...game.children]
+            for(let i = 0; i < tabela.length - 3; i++){
+                for(let j = 0; j < tabela.length ; j++) {
+                  let cell = tabela[j].children[i]
+                  if(cell === undefined)continue
+                  let cellCount = cell.childElementCount
+                  if(cellCount !== 0) {
+                      let cell2 = tabela[j].children[i+1]
+                      let cell3 = tabela[j].children[i+2]
+                      let cell4 = tabela[j].children[i+3]
+                    if((cell2.childElementCount !==0 && cell3.childElementCount !==0 && cell4.childElementCount !==0) &&
+                        (cell.lastElementChild.classList.value === cell2.lastElementChild.classList.value &&
+                         cell.lastElementChild.classList.value === cell3.lastElementChild.classList.value &&
+                         cell.lastElementChild.classList.value === cell4.lastElementChild.classList.value) ) {
+                      
+                            if(cell.lastElementChild.classList.value === "discoPreto"){
+                                criarMsg("disco preto")
+                            } else {
+                                criarMsg("disco vermelho")
+                            }
+                            
+                            console.log("aleluiavertical");
+                    }
+                 }
+                }
+              }
+        }
+
+        function empate (){
+            let cells = document.getElementsByClassName("cedula")
+            let cellsArr = []
+            for (let i = 0; i < cells.length; i++){
+                cellsArr.push(cells[i])
+            }
+            let result = cellsArr.every (function (e) {
+                return e.childElementCount != 0
+            } )
+            console.log(result)
+        }
+
+        function criarMsg (string){          
+            let msgVitoria = document.createElement("div")
+            msgVitoria.setAttribute("id", "msgVitoria")
+            msgVitoria.innerText = "o vencedor foi " + string
+            game.appendChild(msgVitoria)
+            
+        }
+
