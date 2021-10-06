@@ -1,3 +1,4 @@
+
 //eventos menu
 document.getElementById("jogar").addEventListener("click", function(){
    let interval = setInterval(iniciarjogo, 150)
@@ -5,6 +6,9 @@ document.getElementById("jogar").addEventListener("click", function(){
     document.getElementById("menu").style.display = "none"
     document.getElementById("gameSpace").style.display = "flex"
     document.getElementById("voltar").style.display = "block"
+    document.getElementById("header").style.fontSize = "40px"
+    document.getElementById("header").style.paddingBottom = "2px"
+    document.getElementById("header").style.paddingTop = "0px"
     clearInterval(interval);
 }
 })
@@ -27,8 +31,12 @@ document.getElementById("voltar").addEventListener("click", function(){
         document.getElementById("instruções").style.display = "none"
         document.getElementById("gameSpace").style.display = "none"
         document.getElementById("voltar").style.display = "none"
+        document.getElementById("header").style.fontSize = "80px"
+        document.getElementById("header").style.paddingBottom = "30px"
+        document.getElementById("header").style.paddingTop = "70px"
         clearInterval(interval);
     }
+
     })
 
     
@@ -48,6 +56,15 @@ for( let i=1; i<=7;i++){
         document.getElementById("tabela" + i).appendChild(cedula)
     }
 }
+
+//estilizando borda do tabuleiro
+let filterarray = game.children
+filterarray[0].lastElementChild.style.borderRadius = "15px 0px 0px 0px"
+filterarray[6].lastElementChild.style.borderRadius = "0px 15px 0px 0px"
+filterarray[6].children[0].style.borderRadius = "0px 0px 15px 0px"
+filterarray[0].children[0].style.borderRadius = "0px 0px 0px 15px"
+
+
 
 // função de criação de discos
 let counterDisco = 1
@@ -93,7 +110,7 @@ function selecionar(e) {
 
 function vitoriaDiagonal(){
     let array = game.children
-      for(let i=0;i<array.length -3;i++){
+      for(let i=0;i<array.length -4;i++){
      
         for(let k=0;k<array.length -3;k++){
             //diagonal esquerda
@@ -122,9 +139,9 @@ function vitoriaDiagonal(){
         for(let x = array.length -1;x>2;x--){
             //diagonal pra direita
             cellx = array[x].children[i]
+            
             if(cellx.childElementCount !== 0){
                 cellx = cellx.lastElementChild
-
                 if(array[x-1].children[i+1].childElementCount !== 0 &&
                   array[x-2].children[i+2].childElementCount !== 0 &&
                   array[x-3].children[i+3].childElementCount !== 0){
@@ -154,6 +171,7 @@ function vitoriaDiagonal(){
             for(let i = 0; i < tabela.length ; i++){
                 for(let j = 0; j < tabela.length -3 ; j++) {
                   let cell = tabela[j].children[i]
+            
                   if(cell === undefined)continue
                   let cellCount = cell.childElementCount
                   if(cellCount !== 0) {
@@ -179,10 +197,9 @@ function vitoriaDiagonal(){
         
         function verificaV(){
             let tabela = [...game.children]
-            for(let i = 0; i < tabela.length - 3; i++){
+            for(let i = 0; i < tabela.length - 4; i++){
                 for(let j = 0; j < tabela.length ; j++) {
                   let cell = tabela[j].children[i]
-                  if(cell === undefined)continue
                   let cellCount = cell.childElementCount
                   if(cellCount !== 0) {
                       let cell2 = tabela[j].children[i+1]
@@ -215,7 +232,7 @@ function vitoriaDiagonal(){
             let result = cellsArr.every (function (e) {
                 return e.childElementCount != 0
             } )
-            console.log(result)
+
         }
 
         function criarMsg (string){          
