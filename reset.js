@@ -1,4 +1,5 @@
 // função reset 
+
 const reset = document.getElementById('reset')
 reset.addEventListener('click', resetar)
 function resetar() {

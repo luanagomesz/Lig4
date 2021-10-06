@@ -5,6 +5,7 @@ document.getElementById("jogar").addEventListener("click", function(){
     document.getElementById("menu").style.display = "none"
     document.getElementById("gameSpace").style.display = "flex"
     document.getElementById("voltar").style.display = "block"
+    document.getElementById("reset").style.display = "block"
     clearInterval(interval);
 }
 })
@@ -27,6 +28,7 @@ document.getElementById("voltar").addEventListener("click", function(){
         document.getElementById("instruções").style.display = "none"
         document.getElementById("gameSpace").style.display = "none"
         document.getElementById("voltar").style.display = "none"
+        document.getElementById("reset").style.display = "none"
         clearInterval(interval);
     }
     })
