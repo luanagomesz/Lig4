@@ -2,24 +2,43 @@
 
 body{
     height: 100vh;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(243, 243, 231);
+    background-image: url("background.jpg");
+    background-size: 360px 590px;
+    background-repeat:no-repeat;
+    background-position: center;
+    background-position-y: 2vh;
+    background-color: #fedcd0;
 }
 #gameSpace{
+ margin-top: 30px;
+position: relative;
  display: none;
+ animation-name: tabuleiro;
+ animation-duration: 1s;
+}
+#instruções p{
+    width: 310px;
+    animation-name: fade;
+ animation-duration: 1s;
 }
 
 .tabelas{
     display: flex;
     flex-direction: column-reverse;
 }
-.cedula{
-    height: 45px;
-    width: 45px;
-    border: 1px solid #745151;
 
+.cedula{
+    height: 42px;
+    width: 42px;
+    border: 1px solid #421a1a;
+
+}
+.cedula:hover{
+    border: 1px solid #78b2ff;
 }
 
 .discoVermelho{
@@ -31,7 +50,7 @@ body{
     animation-name: bolinha;
     animation-duration: 1s;
     animation-timing-function: cubic-bezier(0.6, -0.28, 0.735, 0.045);
-    transform: translateY(5px) translateX(-2px);;
+    transform: translateY(3px) translateX(-4px);;
 }
 
 .discoPreto{
@@ -42,19 +61,20 @@ body{
     animation-name: bolinha;
     animation-duration: 1s;
     animation-timing-function: cubic-bezier(0.6, -0.28, 0.735, 0.045);
-    transform: translateY(5px) translateX(-2px);;
+    transform: translateY(3px) translateX(-4px);;
    
 }
 /*/ keyframes /*/
+
 @keyframes bolinha{
     0%{
-        transform: translateX(5px);
+        transform: translateX(3px);
         width: 30px;
         height: 20px;
         margin-top: -130px; 
     }
     20%{
-        transform: translateX(-2px);
+        transform: translateX(-4px);
         width: 50px;
         height: 40px;
     }
@@ -71,7 +91,7 @@ body{
         width: 60px;
     }
     90%{
-        transform: translateY(5px) translateX(-2px);
+        transform: translateY(3px) translateX(-4px);
         margin-top:-10px;
         height: 40px;
         width: 50px;
@@ -87,7 +107,26 @@ body{
         width: 50px;
     }
 }
-
+@keyframes tabuleiro{
+    from{ 
+        top: -100px;
+        opacity: 0;
+    }
+    to{ 
+        top: 0px;
+        opacity: 1;
+    
+    }
+}
+@keyframes fade{
+    from{ 
+        opacity: 0;
+    }
+    to{ 
+        opacity: 1;
+    
+    }
+}
 
 
 /*/ keyframes /*/
@@ -98,17 +137,19 @@ body{
     align-items: center;
 }
 header{
-    padding-top: 30px;
-    padding-bottom: 30px;
-    margin-bottom: 20px;
-    background: linear-gradient(to bottom, #dfb3b3 0%, rgb(243, 243, 231) 100%);
+   
     width: 100vw;
     text-align: center;
    
 }
 header h1{
+    animation-name: fade;
+    animation-duration: 1s;
+    padding-top: 70px;
+    padding-bottom: 30px;
+    margin-bottom: 20px;
     font-weight: 900;
-    font-size: 90px;
+    font-size: 80px;
     letter-spacing: 5px;
     padding-bottom: 20px;
     font-family:'Montserrat', sans-serif;
@@ -120,6 +161,8 @@ header h1{
     text-shadow: 0px 3px 3px rgba(255,255,255,0.5);
 }
 #menu button{
+    animation-name: fade;
+    animation-duration: 1s;
     box-shadow: 3px 4px 0px 0px #8a2a21;
 	background-color:#e26b61;
 	border-radius:8px;
@@ -135,7 +178,9 @@ header h1{
     margin-bottom: 30px;
 }
 #menu footer{
-    margin-top: 100px;
+    animation-name: fade;
+    animation-duration: 1s;
+    margin-top: 30px;
     display: flex;
     font-family: 'Montserrat', sans-serif;
     flex-direction: column;
@@ -183,6 +228,8 @@ header h1{
   margin-bottom: 20px;
 }
 #voltar{
+    animation-name: fade;
+    animation-duration: 1s;
     margin-top: 30px;
     display: none;
     box-shadow: 3px 4px 0px 0px #8a2a21;
