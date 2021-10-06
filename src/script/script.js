@@ -1,0 +1,114 @@
+//eventos menu
+document.getElementById("jogar").addEventListener("click", function(){
+   let interval = setInterval(iniciarjogo, 150)
+   function iniciarjogo(){
+    document.getElementById("menu").style.display = "none"
+    document.getElementById("gameSpace").style.display = "flex"
+    document.getElementById("voltar").style.display = "block"
+    clearInterval(interval);
+}
+})
+
+
+document.getElementById("buttonInstruções").addEventListener("click", function(){
+    let interval = setInterval(instruções, 150)
+    function instruções(){
+        document.getElementById("menu").style.display = "none"
+        document.getElementById("instruções").style.display = "flex"
+        document.getElementById("voltar").style.display = "block"
+        clearInterval(interval);
+    }
+    })
+
+document.getElementById("voltar").addEventListener("click", function(){
+    let interval = setInterval(voltar, 150)
+    function voltar(){
+        document.getElementById("menu").style.display = "flex"
+        document.getElementById("instruções").style.display = "none"
+        document.getElementById("gameSpace").style.display = "none"
+        document.getElementById("voltar").style.display = "none"
+        clearInterval(interval);
+    }
+    })
+
+    
+
+game = document.getElementById("gameSpace")
+
+// criando tabuleiro dinamicamente
+
+for( let i=1; i<=7;i++){
+    let tabela = document.createElement("div")
+    tabela.setAttribute("id", "tabela" + i)
+    tabela.setAttribute("class", "tabelas")
+    game.appendChild(tabela)
+    for(let k=1; k<=6;k++){
+        let cedula = document.createElement("div")
+        cedula.setAttribute("class","cedula")
+        document.getElementById("tabela" + i).appendChild(cedula)
+    }
+}
+
+// função de criação de discos
+let counterDisco = 1
+
+function CriarDisco(){
+counterDisco++
+if(counterDisco % 2 != 0){
+    let disco = document.createElement("img")
+    disco.src = "./src/assets/catwhite.png"
+    disco.setAttribute("class", "discoVermelho")
+    return disco
+}
+if(counterDisco % 2 == 0){
+    let disco = document.createElement("img")
+    disco.src = "./src/assets/catblack.png"
+    disco.setAttribute("class", "discoPreto")
+    return disco
+    }
+    
+}
+
+// função captura o evento e alternar discos
+game.addEventListener('click', selecionar)
+
+function selecionar(e) {        
+    let tabela = e.target.parentElement
+    let criaDisco = CriarDisco()
+    if(tabela.classList.contains("cedula")){
+      tabela = tabela.parentElement
+    }
+    for(let i = 5; i >= 0; i--){
+        if(tabela.children[i].childElementCount == 0){
+            tabela.children[i].appendChild(criaDisco)            
+        }        
+    }
+  victory()
+}
+
+
+
+//função de vitoria
+
+function victory (){
+    
+    empate()
+
+    vitoriaDiagonal()
+
+    verificaH()
+
+    verificaV()
+
+}
+
+//função de criação da mensagem de vitória
+
+function criarMsg (string){          
+let msgVitoria = document.createElement("div")
+msgVitoria.setAttribute("id", "msgVitoria")
+msgVitoria.innerText = "o vencedor foi " + string
+game.appendChild(msgVitoria)
+
+}
+
