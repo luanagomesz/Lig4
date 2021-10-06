@@ -24,6 +24,7 @@ document.getElementById("buttonInstruções").addEventListener("click", function
     }
     })
 
+
 document.getElementById("voltar").addEventListener("click", function(){
     let interval = setInterval(voltar, 150)
     function voltar(){
@@ -37,7 +38,17 @@ document.getElementById("voltar").addEventListener("click", function(){
         clearInterval(interval);
     }
 
-    })
+})
+
+document.getElementById("buttonInstruções").addEventListener("click", function(){
+    let interval = setInterval(instruções, 150)
+    function instruções(){
+        document.getElementById("menu").style.display = "none"
+        document.getElementById("instruções").style.display = "flex"
+        document.getElementById("voltar").style.display = "block"
+        clearInterval(interval);
+    }
+})
 
     
 
