@@ -25,6 +25,7 @@ document.getElementById("buttonInstruções").addEventListener("click", function
     }
     })
 
+
 document.getElementById("voltar").addEventListener("click", function(){
     let interval = setInterval(voltar, 100)
     function voltar(){
@@ -36,12 +37,23 @@ document.getElementById("voltar").addEventListener("click", function(){
         document.getElementById("header").style.fontSize = "80px"
         document.getElementById("header").style.paddingBottom = "30px"
         document.getElementById("header").style.paddingTop = "70px"
+        document.getElementById("escolherJogadores").style.display = "none"
         clearInterval(interval);
     }
 
-    })
+})
 
-    
+document.getElementById("jogadores").addEventListener("click", function(){
+    let interval = setInterval(jogadores, 150)
+    function jogadores(){
+        document.getElementById("menu").style.display = "none"
+        document.getElementById("escolherJogadores").style.display = "flex"
+        document.getElementById("voltar").style.display = "block"
+        document.getElementById("header").style.marginBottom = "0px"
+        clearInterval(interval);
+    }
+})
+
 
 game = document.getElementById("gameSpace")
 
@@ -66,10 +78,84 @@ filterarray[6].lastElementChild.style.borderRadius = "0px 15px 0px 0px"
 filterarray[6].children[0].style.borderRadius = "0px 0px 15px 0px"
 filterarray[0].children[0].style.borderRadius = "0px 0px 0px 15px"
 
+//selecionando jogadores
+let player1 
+let player2
+
+const divPlayer1 = document.getElementById("player1")
+divPlayer1.addEventListener("click", function (e){
+    player1 = e.target.id
+    e.target.style.backgroundColor = "#e26b61"
+    e.target.style.borderRadius = "50%"
+
+    console.log(player1)
+})
+
+const divPlayer2 = document.getElementById("player2")
+divPlayer2.addEventListener("click", function (e){
+    player2 = e.target.id
+    e.target.style.backgroundColor = "#e26b61"
+    e.target.style.borderRadius = "50%"
+    if (player2 === player1){
+        let alert = document.createElement("span")
+        alert.innerText = "Nananão, escolha um gatinho diferente do player1"
+        alert.setAttribute("id", "alert")
+        player2 = undefined
+        e.target.style.backgroundColor = ""
+        e.target.style.borderRadius = ""
+        divPlayer2.appendChild(alert);
+        setTimeout(() => {
+            divPlayer2.removeChild(alert)
+        }, 2000);
+    }
+    console.log(player2)
+})
 
 
 // função de criação de discos
+
 let counterDisco = 1
+
+function CriarDisco(){
+counterDisco++
+if(counterDisco % 2 != 0){
+    let disco = document.createElement("img")
+    if (player2 === "gatinhoPreto"){
+        disco.src = "catblack.png"
+    }
+    if (player2 === "gatinhoMisto"){
+        disco.src = "catmisto.png"
+    }
+    if (player2 === "gatinhoLaranja"){
+        disco.src = "catorange.png"
+    }
+    if (player2 === "gatinhoBranco"){
+        disco.src = "catwhite.png"
+    }
+    disco.setAttribute("class", "discoVermelho")
+    return disco
+}
+if(counterDisco % 2 == 0){
+    let disco = document.createElement("img")
+    if (player1 === "gatinhoPreto"){
+        disco.src = "catblack.png"
+    }
+    if (player1 === "gatinhoMisto"){
+        disco.src = "catmisto.png"
+    }
+    if (player1 === "gatinhoLaranja"){
+        disco.src = "catorange.png"
+    }
+    if (player1 === "gatinhoBranco"){
+        disco.src = "catwhite.png"
+    }
+    disco.setAttribute("class", "discoPreto")
+    return disco
+    }
+    
+}
+
+/* let counterDisco = 1
 
 function CriarDisco(){
 counterDisco++
@@ -86,7 +172,9 @@ if(counterDisco % 2 == 0){
     return disco
     }
     
-}
+} */
+
+
 // função captura o evento e alternar discos
 game.addEventListener('click', selecionar)
 
