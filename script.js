@@ -79,8 +79,8 @@ filterarray[6].children[0].style.borderRadius = "0px 0px 15px 0px"
 filterarray[0].children[0].style.borderRadius = "0px 0px 0px 15px"
 
 //selecionando jogadores
-let player1 
-let player2
+let player1 = "gatinhoPreto"
+let player2 = "gatinhoBranco"
 
 const divPlayer1 = document.getElementById("player1")
 divPlayer1.addEventListener("click", function (e){
