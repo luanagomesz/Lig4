@@ -123,7 +123,13 @@ function verificaH(){
                 (cell.lastElementChild.classList.value === cell2.lastElementChild.classList.value &&
                 cell.lastElementChild.classList.value === cell3.lastElementChild.classList.value &&
                 cell.lastElementChild.classList.value === cell4.lastElementChild.classList.value) ) {
-            console.log("aleluiahorizontal");
+                    let cat = cell.lastElementChild.src
+                     if(cell.lastElementChild.classList.value === "discoPreto"){
+                                criarMsg(cat)
+                            } else {
+                                criarMsg(cat)
+                            }
+                            
             }
         }
         }
@@ -151,11 +157,11 @@ function vitoriaDiagonal(){
                  if(cell.classList.value == array[k+1].children[i+1].lastElementChild.classList.value  &&
                      cell.classList.value == array[k+2].children[i+2].lastElementChild.classList.value &&
                      cell.classList.value == array[k+3].children[i+3].lastElementChild.classList.value){
-                        
+                        let cat = cell.src
                         if(cell.classList.value === "discoPreto"){
-                            criarMsg("disco preto")
+                            criarMsg(cat)
                         } else {
-                            criarMsg("disco vermelho")
+                            criarMsg(cat)
                         }
                    console.log('vrauu' + " " + cell.classList.value + " " + "Ganhou")
                }
@@ -175,11 +181,11 @@ function vitoriaDiagonal(){
                     if(cellx.classList.value == array[x-1].children[i+1].lastElementChild.classList.value  &&
                          cellx.classList.value == array[x-2].children[i+2].lastElementChild.classList.value && 
                          cellx.classList.value == array[x-3].children[i+3].lastElementChild.classList.value){
-
+                            let cat = cellx.src
                             if(cellx.classList.value === "discoPreto"){
-                                criarMsg("disco preto")
+                                criarMsg(cat)
                             } else {
-                                criarMsg("disco vermelho")
+                                criarMsg(cat)
                             }
                       console.log('vrauu' + " " + cellx.classList.value + " " + "Ganhou")
                   }
@@ -204,11 +210,12 @@ function vitoriaDiagonal(){
                         (cell.lastElementChild.classList.value === cell2.lastElementChild.classList.value &&
                          cell.lastElementChild.classList.value === cell3.lastElementChild.classList.value &&
                          cell.lastElementChild.classList.value === cell4.lastElementChild.classList.value) ) {
-                      
+                          let cat = cell.lastElementChild.src
+        
                             if(cell.lastElementChild.classList.value === "discoPreto"){
-                                criarMsg("disco preto")
+                                criarMsg(cat)
                             } else {
-                                criarMsg("disco vermelho")
+                                criarMsg(cat)
                             }
                             
                             console.log("aleluiavertical");
@@ -227,15 +234,57 @@ function vitoriaDiagonal(){
             let result = cellsArr.every (function (e) {
                 return e.childElementCount != 0
             } )
-
+            if(result == true){
+                criarMsg("Empate")
+            }
         }
+          
 
-        function criarMsg (string){          
-            let msgVitoria = document.createElement("div")
-            msgVitoria.setAttribute("id", "msgVitoria")
-            msgVitoria.innerText = "o vencedor foi " + string
-            game.appendChild(msgVitoria)
+        function criarMsg(cat){
+            document.getElementById("gameSpace").style.display = "none"
+            document.getElementById('reset').style.display = "none"
+            let imgBlack = document.createElement('img')
+            imgBlack.src= "catblack.png"
+            let imgMisto = document.createElement('img')
+            imgMisto.src= "catmisto.png"  
+            let imgOrange = document.createElement('img')
+            imgOrange.src = "catorange.png"  
+            let imgWhite = document.createElement('img')
+            imgWhite.src= "catwhite.png"  
+
+            let vitoria = document.getElementById("vitoria")
+            vitoria.style.display = "block"
+            rainbow = document.createElement("div")
+            rainbow.setAttribute("class", "rainbow")
+            let counter = 0
+            let intervalo = setInterval(function(){
+                rainbow = document.createElement("div")
+                rainbow.setAttribute("class", "rainbow")
+                    counter++
+           
+                 if(counter == 10){
+                    clearInterval(intervalo);
+                 }
+                 vitoria.appendChild(rainbow)
+
+            },200)
+        
+              let intervalo2 = setInterval(function(){
+                    rainbow = document.createElement("div")
+                    rainbow.setAttribute("class", "rainbow2")
+                    
+                    if(counter == 10){
+                        clearInterval(intervalo2);
+                     }
+    
+                        vitoria.appendChild(rainbow)
+                
             
+                },300)
+              
+
+
+
         }
 
 
