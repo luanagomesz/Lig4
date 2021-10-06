@@ -1,8 +1,9 @@
 
 //eventos menu
 document.getElementById("jogar").addEventListener("click", function(){
-   let interval = setInterval(iniciarjogo, 150)
+   let interval = setInterval(iniciarjogo, 100)
    function iniciarjogo(){
+    document.getElementById('reset').style.display = "block"
     document.getElementById("menu").style.display = "none"
     document.getElementById("gameSpace").style.display = "flex"
     document.getElementById("voltar").style.display = "block"
@@ -15,7 +16,7 @@ document.getElementById("jogar").addEventListener("click", function(){
 
 
 document.getElementById("buttonInstruções").addEventListener("click", function(){
-    let interval = setInterval(instruções, 150)
+    let interval = setInterval(instruções, 100)
     function instruções(){
         document.getElementById("menu").style.display = "none"
         document.getElementById("instruções").style.display = "flex"
@@ -25,8 +26,9 @@ document.getElementById("buttonInstruções").addEventListener("click", function
     })
 
 document.getElementById("voltar").addEventListener("click", function(){
-    let interval = setInterval(voltar, 150)
+    let interval = setInterval(voltar, 100)
     function voltar(){
+        document.getElementById('reset').style.display = "none"
         document.getElementById("menu").style.display = "flex"
         document.getElementById("instruções").style.display = "none"
         document.getElementById("gameSpace").style.display = "none"
@@ -188,37 +190,6 @@ function vitoriaDiagonal(){
          }
 
 
-
-
-         function verificaH(){
-            let tabela = [...game.children]
-            for(let i = 0; i < tabela.length ; i++){
-                for(let j = 0; j < tabela.length -3 ; j++) {
-                  let cell = tabela[j].children[i]
-            
-                  if(cell === undefined)continue
-                  let cellCount = cell.childElementCount
-                  if(cellCount !== 0) {
-                      let cell2 = tabela[j+1].children[i]
-                      let cell3 = tabela[j+2].children[i]
-                      let cell4 = tabela[j+3].children[i]
-                    if((cell2.childElementCount !==0 && cell3.childElementCount !==0 && cell4.childElementCount !==0) &&
-                        (cell.lastElementChild.classList.value === cell2.lastElementChild.classList.value &&
-                         cell.lastElementChild.classList.value === cell3.lastElementChild.classList.value &&
-                         cell.lastElementChild.classList.value === cell4.lastElementChild.classList.value) ) {
-
-                            if(cell.lastElementChild.classList.value === "discoPreto"){
-                                criarMsg("disco preto")
-                            } else {
-                                criarMsg("disco vermelho")
-                            }
-                            console.log("aleluiahorizontal");
-                    }
-                 }
-                }
-              }
-        }
-        
         function verificaV(){
             let tabela = [...game.children]
             for(let i = 0; i < tabela.length - 4; i++){

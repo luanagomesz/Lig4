@@ -230,7 +230,7 @@ header h1{
 #voltar{
     animation-name: fade;
     animation-duration: 1s;
-    margin-top: 30px;
+    margin-top: 15px;
     display: none;
     box-shadow: 3px 4px 0px 0px #8a2a21;
 	
@@ -254,4 +254,36 @@ header h1{
 	top:1px;
     left:2px;
     box-shadow: 0px 2px 0px 0px #8a2a21;
+}
+
+#reset{
+    animation-name: fade;
+    animation-duration: 1s;
+    margin-top: 10px;
+    display: none;
+    box-shadow: 3px 4px 0px 0px #8a2a21;
+	
+	background-color:#e26b61;
+	border-radius:8px;
+	border:1px solid #e26b61;
+	cursor:pointer;
+	color:#ffffff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+	font-size:17px;
+	padding:5px 15px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #810e05;
+}
+
+#reset:hover {
+	background-color:#f24437;
+}
+
+#reset:active{
+    position:relative;
+	top:1px;
+    left:2px;
+    box-shadow: 0px 2px 0px 0px #8a2a21;
+}
 }
