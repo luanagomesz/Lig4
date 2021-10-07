@@ -84,24 +84,32 @@ filterarray[0].children[0].style.borderRadius = "0px 0px 0px 15px"
 
 //selecionando jogadores
 let player1 = "gatinhoPreto"
-let player2 = "gatinhoBranco"
-
+let player2 = "gatinhoBranco2"
+let selecionado1 = document.getElementById(player1)
+selecionado1.setAttribute("class","imgSelecionado")
+let selecionado2 = document.getElementById(player2)
+selecionado2.setAttribute("class","imgSelecionado")
 const escolherJogadores = document.getElementById("escolherJogadores")
 
 const divPlayer1 = document.getElementById("player1")
 divPlayer1.addEventListener("click", function (e){
+    if(e.target.classList.value == "imgJogadores"){
+    selecionado1.setAttribute("class","imgJogadores")
     player1 = e.target.id
-    e.target.style.backgroundColor = "#e26b61"
-    e.target.style.borderRadius = "50%"
+    selecionado1 = document.getElementById(player1)
+    selecionado1.setAttribute("class","imgSelecionado")
+}
 
-    console.log(player1)
 })
 
 const divPlayer2 = document.getElementById("player2")
 divPlayer2.addEventListener("click", function (e){
-    player2 = e.target.id
-    e.target.style.backgroundColor = "#e26b61"
-    e.target.style.borderRadius = "50%"
+    if(e.target.classList.value == "imgJogadores"){
+        selecionado2.setAttribute("class","imgJogadores")
+        player2 = e.target.id
+        selecionado2 = document.getElementById(player2)
+        selecionado2.setAttribute("class","imgSelecionado")
+    }
     if (player2 === player1){
         let alert = document.createElement("span")
         alert.innerText = "Nananão, escolha um gatinho diferente do player1"
@@ -110,9 +118,9 @@ divPlayer2.addEventListener("click", function (e){
         e.target.style.backgroundColor = ""
         e.target.style.borderRadius = ""
         escolherJogadores.appendChild(alert);
-      /*   setTimeout(() => {
+       setTimeout(() => {
             escolherJogadores.removeChild(alert)
-        }, 2000); */
+        }, 2000); 
     }
     console.log(player2)
 })
@@ -126,16 +134,16 @@ function CriarDisco(){
 counterDisco++
 if(counterDisco % 2 != 0){
     let disco = document.createElement("img")
-    if (player2 === "gatinhoPreto"){
+    if (player2 === "gatinhoPreto2"){
         disco.src = "catblack.png"
     }
-    if (player2 === "gatinhoMisto"){
+    if (player2 === "gatinhoMisto2"){
         disco.src = "catmisto.png"
     }
-    if (player2 === "gatinhoLaranja"){
+    if (player2 === "gatinhoLaranja2"){
         disco.src = "catorange.png"
     }
-    if (player2 === "gatinhoBranco"){
+    if (player2 === "gatinhoBranco2"){
         disco.src = "catwhite.png"
     }
     disco.setAttribute("class", "discoVermelho")
@@ -391,20 +399,20 @@ function vitoriaDiagonal(){
 
             
             if(cat == "player2"){
-                if(player2 == "gatinhoPreto"){
+                if(player2 == "gatinhoPreto2"){
                   vitoria.appendChild(imgBlack)
                     mensagem.innerText = "Gatinho Preto Ganhou! 🏆"
                     vitoria.appendChild(mensagem)
                 }
-                if(player2 == "gatinhoLaranja"){
+                if(player2 == "gatinhoLaranja2"){
                    vitoria.appendChild(imgOrange)
                      mensagem.innerText = "Gatinho Laranja Ganhou! 🏆"
                      vitoria.appendChild(mensagem)
-            }   if(player2 == "gatinhoBranco"){
+            }   if(player2 == "gatinhoBranco2"){
                   vitoria.appendChild(imgWhite)
                   mensagem.innerText = "Gatinho Branco Ganhou! 🏆"
                   vitoria.appendChild(mensagem)
-            }    if(player2 == "gatinhoMisto"){
+            }    if(player2 == "gatinhoMisto2"){
                    vitoria.appendChild(imgMisto)
                    mensagem.innerText = "Gatinho Tricolor Ganhou! 🏆"
                    vitoria.appendChild(mensagem)

@@ -498,6 +498,12 @@ header h1{
     height: 60px;
     width: 70px;
 }
+.imgSelecionado{
+    height: 60px;
+    width: 70px;
+    background-color:#e26b61;
+    border-radius: 50%;
+}
 
 .imgJogadores:hover{
     background-color:#e26b61;
