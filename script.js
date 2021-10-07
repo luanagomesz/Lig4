@@ -327,7 +327,7 @@ function vitoriaDiagonal(){
                 return e.childElementCount != 0
             } )
             if(result == true){
-                criarMsg("Empate")
+                criarMsg("empate")
             }
         }
           
@@ -360,6 +360,11 @@ function vitoriaDiagonal(){
 
             let mensagem = document.createElement("h1")
             mensagem.setAttribute("id", "mensagemVitoria")
+
+            if(cat == "empate"){
+                mensagem.innerText = "Empatou!!"
+                vitoria.appendChild(mensagem)
+            }
              if(cat == "player1"){
                  if(player1 == "gatinhoPreto"){
                    vitoria.appendChild(imgBlack)
@@ -381,6 +386,8 @@ function vitoriaDiagonal(){
              }
 
             }
+
+            
             if(cat == "player2"){
                 if(player2 == "gatinhoPreto"){
                   vitoria.appendChild(imgBlack)
@@ -402,7 +409,7 @@ function vitoriaDiagonal(){
             }
 
            }
-
+     if(cat != "empate"){
            //criando rainbow
             let counter = 0
             let intervalo = setInterval(function(){
@@ -437,3 +444,4 @@ function vitoriaDiagonal(){
 
         }
 
+    }
