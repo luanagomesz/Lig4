@@ -232,6 +232,43 @@ position: relative;
     }
 }
 
+@keyframes selectedCat{
+    0%{
+ 
+        transform: rotate(20deg);
+      
+    }
+    10%{
+ 
+  
+    }
+    20%{ 
+   
+     transform: rotate(0deg);
+
+    }
+    40%{
+ 
+        transform: rotate(-20deg);
+ 
+    }
+    60%{
+ 
+        transform: rotate(0deg);
+    
+    }
+    80%{
+        background-color: #ffffff00;;
+     transform: rotate(20deg);
+     
+ }
+    100%{
+        background-color: #e26c61b7;;
+        border-radius: 30%;
+     transform: rotate(0deg);
+    }
+ }
+
 /*/ keyframes /*/
 
 
@@ -499,15 +536,18 @@ header h1{
     width: 70px;
 }
 .imgSelecionado{
+    position: sticky;
+    animation-name: selectedCat;
+    animation-fill-mode: forwards;
+    animation-duration: 1s;
     height: 60px;
     width: 70px;
-    background-color:#e26b61;
-    border-radius: 50%;
+   
+    
 }
 
 .imgJogadores:hover{
-    background-color:#e26b61;
-    border-radius: 50%;
+   cursor: pointer;
 }
 
 #player2{
@@ -515,6 +555,10 @@ header h1{
 }
 
 #alert{
+    animation-name: fade;
+    animation-duration: 1000ms;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
     background-color:#e26b61;
 	border-radius:8px;
 	border:1px solid #e26b61;
@@ -522,13 +566,13 @@ header h1{
 	color:#ffffff;
     font-family: 'Montserrat', sans-serif;
     font-weight: 300;
-	font-size:17px;
-	padding:7px 25px;
+	font-size:20px;
+	padding:10px 25px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #810e05;
     position: absolute;
     width: 200px;
-    left: 50%;
+    margin-left: 165px;
     transform: translateX(-50%) translateY(-75%);
-    top: 50%;
+    margin-top: 150px;
 }

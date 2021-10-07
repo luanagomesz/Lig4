@@ -97,7 +97,21 @@ divPlayer1.addEventListener("click", function (e){
     selecionado1.setAttribute("class","imgJogadores")
     player1 = e.target.id
     selecionado1 = document.getElementById(player1)
-    selecionado1.setAttribute("class","imgSelecionado")
+    selecionado1.setAttribute("class","imgSelecionado")   
+}  
+    if (selecionado1.src == selecionado2.src){
+    selecionado1.setAttribute("class","imgJogadores")
+    let alert = document.createElement("span")
+    alert.innerText = "Nananão, escolha um gatinho diferente do player2"
+    alert.setAttribute("id", "alert")
+    alert.addEventListener("click",function(){
+        escolherJogadores.removeChild(alert)
+    })
+    player1 = undefined
+    escolherJogadores.appendChild(alert);
+   setTimeout(() => {
+        escolherJogadores.removeChild(alert)
+    }, 2000); 
 }
 
 })
@@ -110,13 +124,15 @@ divPlayer2.addEventListener("click", function (e){
         selecionado2 = document.getElementById(player2)
         selecionado2.setAttribute("class","imgSelecionado")
     }
-    if (player2 === player1){
+    if (selecionado2.src == selecionado1.src){
+        selecionado2.setAttribute("class","imgJogadores")
         let alert = document.createElement("span")
         alert.innerText = "Nananão, escolha um gatinho diferente do player1"
         alert.setAttribute("id", "alert")
+        alert.addEventListener("click",function(){
+            escolherJogadores.removeChild(alert)
+        })
         player2 = undefined
-        e.target.style.backgroundColor = ""
-        e.target.style.borderRadius = ""
         escolherJogadores.appendChild(alert);
        setTimeout(() => {
             escolherJogadores.removeChild(alert)
