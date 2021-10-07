@@ -2,6 +2,7 @@
 const reset = document.getElementById('reset')
 reset.addEventListener('click', resetar)
 function resetar() {
+    counterDisco =1
     let cells = document.getElementsByClassName("cedula")
     let cellsArr = []
     for (let i = 0; i < cells.length; i++){

@@ -1,8 +1,10 @@
 
 //eventos menu
+let counterDisco = 1
 document.getElementById("jogar").addEventListener("click", function(){
    let interval = setInterval(iniciarjogo, 100)
    function iniciarjogo(){
+    counterDisco =1
     document.getElementById('reset').style.display = "block"
     document.getElementById("menu").style.display = "none"
     document.getElementById("gameSpace").style.display = "flex"
@@ -27,8 +29,33 @@ document.getElementById("buttonInstruções").addEventListener("click", function
 
 
 document.getElementById("voltar").addEventListener("click", function(){
-    let interval = setInterval(voltar, 100)
-    function voltar(){
+    if(player1 == undefined){
+        let alert = document.createElement("span")
+        alert.innerText = "Escolha um Gatinho Player 1 😸"
+        alert.setAttribute("id", "alert")
+        alert.addEventListener("click",function(){
+            escolherJogadores.removeChild(alert)
+        })
+        escolherJogadores.appendChild(alert);
+       setTimeout(() => {
+            escolherJogadores.removeChild(alert)
+        }, 2000); 
+    }
+   else if(player2 == undefined){
+        let alert = document.createElement("span")
+        alert.innerText = "Escolha um Gatinho Player 2😸"
+        alert.setAttribute("id", "alert")
+        alert.addEventListener("click",function(){
+            escolherJogadores.removeChild(alert)
+        })
+        escolherJogadores.appendChild(alert);
+       setTimeout(() => {
+            escolherJogadores.removeChild(alert)
+        }, 2000); 
+    }
+   else{ 
+    voltar()
+       function voltar(){
         resetar()
         document.getElementById("vitoria").style.display = "none"
         document.getElementById("vitoria").innerHTML = ""
@@ -42,9 +69,8 @@ document.getElementById("voltar").addEventListener("click", function(){
         document.getElementById("header").style.paddingTop = "60px"
         document.getElementById("escolherJogadores").style.display = "none"
         document.getElementById("header").style.marginBottom = "20px"
-        clearInterval(interval);
     }
-
+   }
 })
 
 document.getElementById("jogadores").addEventListener("click", function(){
@@ -102,7 +128,7 @@ divPlayer1.addEventListener("click", function (e){
     if (selecionado1.src == selecionado2.src){
     selecionado1.setAttribute("class","imgJogadores")
     let alert = document.createElement("span")
-    alert.innerText = "Nananão, escolha um gatinho diferente do player2"
+    alert.innerText = "Nananão, escolha um gatinho diferente do player 2"
     alert.setAttribute("id", "alert")
     alert.addEventListener("click",function(){
         escolherJogadores.removeChild(alert)
@@ -127,7 +153,7 @@ divPlayer2.addEventListener("click", function (e){
     if (selecionado2.src == selecionado1.src){
         selecionado2.setAttribute("class","imgJogadores")
         let alert = document.createElement("span")
-        alert.innerText = "Nananão, escolha um gatinho diferente do player1"
+        alert.innerText = "Nananão, escolha um gatinho diferente do player 1"
         alert.setAttribute("id", "alert")
         alert.addEventListener("click",function(){
             escolherJogadores.removeChild(alert)
@@ -144,7 +170,6 @@ divPlayer2.addEventListener("click", function (e){
 
 // função de criação de discos
 
-let counterDisco = 1
 
 function CriarDisco(){
 counterDisco++
