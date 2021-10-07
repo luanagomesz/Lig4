@@ -25,23 +25,39 @@ document.getElementById("buttonInstruções").addEventListener("click", function
     }
     })
 
+
 document.getElementById("voltar").addEventListener("click", function(){
     let interval = setInterval(voltar, 100)
     function voltar(){
+        resetar()
+        document.getElementById("vitoria").style.display = "none"
+        document.getElementById("vitoria").innerHTML = ""
         document.getElementById('reset').style.display = "none"
         document.getElementById("menu").style.display = "flex"
         document.getElementById("instruções").style.display = "none"
         document.getElementById("gameSpace").style.display = "none"
         document.getElementById("voltar").style.display = "none"
         document.getElementById("header").style.fontSize = "80px"
-        document.getElementById("header").style.paddingBottom = "30px"
-        document.getElementById("header").style.paddingTop = "70px"
+        document.getElementById("header").style.paddingBottom = "15px"
+        document.getElementById("header").style.paddingTop = "60px"
+        document.getElementById("escolherJogadores").style.display = "none"
+        document.getElementById("header").style.marginBottom = "20px"
         clearInterval(interval);
     }
 
-    })
+})
 
-    
+document.getElementById("jogadores").addEventListener("click", function(){
+    let interval = setInterval(jogadores, 150)
+    function jogadores(){
+        document.getElementById("menu").style.display = "none"
+        document.getElementById("escolherJogadores").style.display = "flex"
+        document.getElementById("voltar").style.display = "block"
+        document.getElementById("header").style.marginBottom = "0px"
+        clearInterval(interval);
+    }
+})
+
 
 game = document.getElementById("gameSpace")
 
@@ -66,10 +82,84 @@ filterarray[6].lastElementChild.style.borderRadius = "0px 15px 0px 0px"
 filterarray[6].children[0].style.borderRadius = "0px 0px 15px 0px"
 filterarray[0].children[0].style.borderRadius = "0px 0px 0px 15px"
 
+//selecionando jogadores
+let player1 = "gatinhoPreto"
+let player2 = "gatinhoBranco"
+
+const divPlayer1 = document.getElementById("player1")
+divPlayer1.addEventListener("click", function (e){
+    player1 = e.target.id
+    e.target.style.backgroundColor = "#e26b61"
+    e.target.style.borderRadius = "50%"
+
+    console.log(player1)
+})
+
+const divPlayer2 = document.getElementById("player2")
+divPlayer2.addEventListener("click", function (e){
+    player2 = e.target.id
+    e.target.style.backgroundColor = "#e26b61"
+    e.target.style.borderRadius = "50%"
+    if (player2 === player1){
+        let alert = document.createElement("span")
+        alert.innerText = "Nananão, escolha um gatinho diferente do player1"
+        alert.setAttribute("id", "alert")
+        player2 = undefined
+        e.target.style.backgroundColor = ""
+        e.target.style.borderRadius = ""
+        divPlayer2.appendChild(alert);
+        setTimeout(() => {
+            divPlayer2.removeChild(alert)
+        }, 2000);
+    }
+    console.log(player2)
+})
 
 
 // função de criação de discos
+
 let counterDisco = 1
+
+function CriarDisco(){
+counterDisco++
+if(counterDisco % 2 != 0){
+    let disco = document.createElement("img")
+    if (player2 === "gatinhoPreto"){
+        disco.src = "catblack.png"
+    }
+    if (player2 === "gatinhoMisto"){
+        disco.src = "catmisto.png"
+    }
+    if (player2 === "gatinhoLaranja"){
+        disco.src = "catorange.png"
+    }
+    if (player2 === "gatinhoBranco"){
+        disco.src = "catwhite.png"
+    }
+    disco.setAttribute("class", "discoVermelho")
+    return disco
+}
+if(counterDisco % 2 == 0){
+    let disco = document.createElement("img")
+    if (player1 === "gatinhoPreto"){
+        disco.src = "catblack.png"
+    }
+    if (player1 === "gatinhoMisto"){
+        disco.src = "catmisto.png"
+    }
+    if (player1 === "gatinhoLaranja"){
+        disco.src = "catorange.png"
+    }
+    if (player1 === "gatinhoBranco"){
+        disco.src = "catwhite.png"
+    }
+    disco.setAttribute("class", "discoPreto")
+    return disco
+    }
+    
+}
+
+/* let counterDisco = 1
 
 function CriarDisco(){
 counterDisco++
@@ -86,7 +176,9 @@ if(counterDisco % 2 == 0){
     return disco
     }
     
-}
+} */
+
+
 // função captura o evento e alternar discos
 game.addEventListener('click', selecionar)
 
@@ -123,11 +215,11 @@ function verificaH(){
                 (cell.lastElementChild.classList.value === cell2.lastElementChild.classList.value &&
                 cell.lastElementChild.classList.value === cell3.lastElementChild.classList.value &&
                 cell.lastElementChild.classList.value === cell4.lastElementChild.classList.value) ) {
-                    let cat = cell.lastElementChild.src
+                  
                      if(cell.lastElementChild.classList.value === "discoPreto"){
-                                criarMsg(cat)
+                                criarMsg('player1')
                             } else {
-                                criarMsg(cat)
+                                criarMsg('player2')
                             }
                             
             }
@@ -157,11 +249,11 @@ function vitoriaDiagonal(){
                  if(cell.classList.value == array[k+1].children[i+1].lastElementChild.classList.value  &&
                      cell.classList.value == array[k+2].children[i+2].lastElementChild.classList.value &&
                      cell.classList.value == array[k+3].children[i+3].lastElementChild.classList.value){
-                        let cat = cell.src
+                     
                         if(cell.classList.value === "discoPreto"){
-                            criarMsg(cat)
+                            criarMsg('player1')
                         } else {
-                            criarMsg(cat)
+                            criarMsg('player2')
                         }
                    console.log('vrauu' + " " + cell.classList.value + " " + "Ganhou")
                }
@@ -181,11 +273,11 @@ function vitoriaDiagonal(){
                     if(cellx.classList.value == array[x-1].children[i+1].lastElementChild.classList.value  &&
                          cellx.classList.value == array[x-2].children[i+2].lastElementChild.classList.value && 
                          cellx.classList.value == array[x-3].children[i+3].lastElementChild.classList.value){
-                            let cat = cellx.src
+             
                             if(cellx.classList.value === "discoPreto"){
-                                criarMsg(cat)
+                                criarMsg('player1')
                             } else {
-                                criarMsg(cat)
+                                criarMsg('player2')
                             }
                       console.log('vrauu' + " " + cellx.classList.value + " " + "Ganhou")
                   }
@@ -210,12 +302,12 @@ function vitoriaDiagonal(){
                         (cell.lastElementChild.classList.value === cell2.lastElementChild.classList.value &&
                          cell.lastElementChild.classList.value === cell3.lastElementChild.classList.value &&
                          cell.lastElementChild.classList.value === cell4.lastElementChild.classList.value) ) {
-                          let cat = cell.lastElementChild.src
+                        
         
                             if(cell.lastElementChild.classList.value === "discoPreto"){
-                                criarMsg(cat)
+                                criarMsg("player1")
                             } else {
-                                criarMsg(cat)
+                                criarMsg("player2")
                             }
                             
                             console.log("aleluiavertical");
@@ -239,23 +331,79 @@ function vitoriaDiagonal(){
             }
         }
           
+     //função  de vitoria
 
         function criarMsg(cat){
             document.getElementById("gameSpace").style.display = "none"
             document.getElementById('reset').style.display = "none"
+
             let imgBlack = document.createElement('img')
             imgBlack.src= "catblack.png"
+            imgBlack.setAttribute("class","victoryCat")
+
             let imgMisto = document.createElement('img')
             imgMisto.src= "catmisto.png"  
+            imgMisto.setAttribute("class","victoryCat")
+
             let imgOrange = document.createElement('img')
-            imgOrange.src = "catorange.png"  
+            imgOrange.src = "catorange.png" 
+            imgOrange.setAttribute("class","victoryCat")
+
             let imgWhite = document.createElement('img')
             imgWhite.src= "catwhite.png"  
+            imgWhite.setAttribute("class","victoryCat")
 
             let vitoria = document.getElementById("vitoria")
             vitoria.style.display = "block"
             rainbow = document.createElement("div")
             rainbow.setAttribute("class", "rainbow")
+
+            let mensagem = document.createElement("h1")
+            mensagem.setAttribute("id", "mensagemVitoria")
+             if(cat == "player1"){
+                 if(player1 == "gatinhoPreto"){
+                   vitoria.appendChild(imgBlack)
+                     mensagem.innerText = "Gatinho Preto Ganhou! 🏆"
+                     vitoria.appendChild(mensagem)
+                 }
+                 if(player1 == "gatinhoLaranja"){
+                    vitoria.appendChild(imgOrange)
+                      mensagem.innerText = "Gatinho Laranja Ganhou! 🏆"
+                      vitoria.appendChild(mensagem)
+             }   if(player1 == "gatinhoBranco"){
+                   vitoria.appendChild(imgWhite)
+                   mensagem.innerText = "Gatinho Branco Ganhou! 🏆"
+                   vitoria.appendChild(mensagem)
+             }    if(player1 == "gatinhoMisto"){
+                    vitoria.appendChild(imgMisto)
+                    mensagem.innerText = "Gatinho Tricolor Ganhou! 🏆"
+                    vitoria.appendChild(mensagem)
+             }
+
+            }
+            if(cat == "player2"){
+                if(player2 == "gatinhoPreto"){
+                  vitoria.appendChild(imgBlack)
+                    mensagem.innerText = "Gatinho Preto Ganhou! 🏆"
+                    vitoria.appendChild(mensagem)
+                }
+                if(player2 == "gatinhoLaranja"){
+                   vitoria.appendChild(imgOrange)
+                     mensagem.innerText = "Gatinho Laranja Ganhou! 🏆"
+                     vitoria.appendChild(mensagem)
+            }   if(player2 == "gatinhoBranco"){
+                  vitoria.appendChild(imgWhite)
+                  mensagem.innerText = "Gatinho Branco Ganhou! 🏆"
+                  vitoria.appendChild(mensagem)
+            }    if(player2 == "gatinhoMisto"){
+                   vitoria.appendChild(imgMisto)
+                   mensagem.innerText = "Gatinho Tricolor Ganhou! 🏆"
+                   vitoria.appendChild(mensagem)
+            }
+
+           }
+
+           //criando rainbow
             let counter = 0
             let intervalo = setInterval(function(){
                 rainbow = document.createElement("div")
@@ -281,11 +429,11 @@ function vitoriaDiagonal(){
                 
             
                 },300)
-              
+ 
+
+
 
 
 
         }
-
-
 
