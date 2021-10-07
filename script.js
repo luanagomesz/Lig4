@@ -86,6 +86,8 @@ filterarray[0].children[0].style.borderRadius = "0px 0px 0px 15px"
 let player1 = "gatinhoPreto"
 let player2 = "gatinhoBranco"
 
+const escolherJogadores = document.getElementById("escolherJogadores")
+
 const divPlayer1 = document.getElementById("player1")
 divPlayer1.addEventListener("click", function (e){
     player1 = e.target.id
@@ -107,10 +109,10 @@ divPlayer2.addEventListener("click", function (e){
         player2 = undefined
         e.target.style.backgroundColor = ""
         e.target.style.borderRadius = ""
-        divPlayer2.appendChild(alert);
-        setTimeout(() => {
-            divPlayer2.removeChild(alert)
-        }, 2000);
+        escolherJogadores.appendChild(alert);
+      /*   setTimeout(() => {
+            escolherJogadores.removeChild(alert)
+        }, 2000); */
     }
     console.log(player2)
 })
