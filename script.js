@@ -164,7 +164,7 @@ divPlayer2.addEventListener("click", function (e){
             escolherJogadores.removeChild(alert)
         }, 2000); 
     }
-    console.log(player2)
+
 })
 
 
@@ -209,25 +209,6 @@ if(counterDisco % 2 == 0){
     }
     
 }
-
-/* let counterDisco = 1
-
-function CriarDisco(){
-counterDisco++
-if(counterDisco % 2 != 0){
-    let disco = document.createElement("img")
-    disco.src = "catwhite.png"
-    disco.setAttribute("class", "discoVermelho")
-    return disco
-}
-if(counterDisco % 2 == 0){
-    let disco = document.createElement("img")
-    disco.src = "catblack.png"
-    disco.setAttribute("class", "discoPreto")
-    return disco
-    }
-    
-} */
 
 
 // função captura o evento e alternar discos
@@ -306,7 +287,6 @@ function vitoriaDiagonal(){
                         } else {
                             criarMsg('player2')
                         }
-                   console.log('vrauu' + " " + cell.classList.value + " " + "Ganhou")
                }
             }
          }
@@ -330,7 +310,6 @@ function vitoriaDiagonal(){
                             } else {
                                 criarMsg('player2')
                             }
-                      console.log('vrauu' + " " + cellx.classList.value + " " + "Ganhou")
                   }
                  }
                 }
@@ -361,7 +340,6 @@ function vitoriaDiagonal(){
                                 criarMsg("player2")
                             }
                             
-                            console.log("aleluiavertical");
                     }
                  }
                 }
