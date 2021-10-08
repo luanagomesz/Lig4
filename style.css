@@ -674,6 +674,7 @@ header h1{
         text-decoration:none;
         text-shadow:0px 1px 0px #810e05;
     }
+   
     #menu button{
         animation-name: fade;
         animation-duration: 1s;
@@ -685,7 +686,7 @@ header h1{
         color:#ffffff;
         font-family: 'Montserrat', sans-serif;
         font-weight: 400;
-        font-size:25px;
+        font-size:30px;
         padding:7px 50px;
         text-decoration:none;
         text-shadow:0px 1px 0px #810e05;
@@ -693,7 +694,7 @@ header h1{
     }
 
     #jogadores{
-        width: 300px;
+        width: 400px;
        
     }
     header{
