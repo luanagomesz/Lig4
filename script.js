@@ -67,9 +67,9 @@ document
   });
 
 document.getElementById('voltar').addEventListener('click', function () {
-  if (player1 == undefined) {
+  if (player1 === undefined) {
     showAlert('Escolha um Gatinho Player 1 😸', escolherJogadores);
-  } else if (player2 == undefined) {
+  } else if (player2 === undefined) {
     showAlert('Escolha um Gatinho Player 2😸', escolherJogadores);
   } else {
     // Return to main menu
@@ -138,13 +138,13 @@ const escolherJogadores = document.getElementById('escolherJogadores');
 
 const divPlayer1 = document.getElementById('player1');
 divPlayer1.addEventListener('click', function (e) {
-  if (e.target.classList.value == 'imgJogadores') {
+  if (e.target.classList.value === 'imgJogadores') {
     selecionado1.setAttribute('class', 'imgJogadores');
     player1 = e.target.id;
     selecionado1 = document.getElementById(player1);
     selecionado1.setAttribute('class', 'imgSelecionado');
   }
-  if (selecionado1.src == selecionado2.src) {
+  if (selecionado1.src === selecionado2.src) {
     selecionado1.setAttribute('class', 'imgJogadores');
     player1 = undefined;
     showAlert(
@@ -156,13 +156,13 @@ divPlayer1.addEventListener('click', function (e) {
 
 const divPlayer2 = document.getElementById('player2');
 divPlayer2.addEventListener('click', function (e) {
-  if (e.target.classList.value == 'imgJogadores') {
+  if (e.target.classList.value === 'imgJogadores') {
     selecionado2.setAttribute('class', 'imgJogadores');
     player2 = e.target.id;
     selecionado2 = document.getElementById(player2);
     selecionado2.setAttribute('class', 'imgSelecionado');
   }
-  if (selecionado2.src == selecionado1.src) {
+  if (selecionado2.src === selecionado1.src) {
     selecionado2.setAttribute('class', 'imgJogadores');
     player2 = undefined;
     showAlert(
@@ -182,7 +182,7 @@ divPlayer2.addEventListener('click', function (e) {
  */
 function CriarDisco() {
   counterDisco++;
-  if (counterDisco % 2 != 0) {
+  if (counterDisco % 2 !== 0) {
     const disco = document.createElement('img');
     if (player2 === 'gatinhoPreto2') {
       disco.src = 'catblack.png';
@@ -199,7 +199,7 @@ function CriarDisco() {
     disco.setAttribute('class', 'discoVermelho');
     return disco;
   }
-  if (counterDisco % 2 == 0) {
+  if (counterDisco % 2 === 0) {
     const disco = document.createElement('img');
     if (player1 === 'gatinhoPreto') {
       disco.src = 'catblack.png';
@@ -229,8 +229,9 @@ function selecionar(e) {
     tabela = tabela.parentElement;
   }
   for (let i = 5; i >= 0; i--) {
-    if (tabela.children[i].childElementCount == 0) {
+    if (tabela.children[i].childElementCount === 0) {
       tabela.children[i].appendChild(criaDisco);
+      break;
     }
   }
   empate();
@@ -428,56 +429,56 @@ function criarMsg(cat) {
   const mensagem = document.createElement('h1');
   mensagem.setAttribute('id', 'mensagemVitoria');
 
-  if (cat == 'empate') {
+  if (cat === 'empate') {
     mensagem.innerText = 'Empatou!!';
     vitoria.appendChild(mensagem);
   }
-  if (cat == 'player1') {
-    if (player1 == 'gatinhoPreto') {
+  if (cat === 'player1') {
+    if (player1 === 'gatinhoPreto') {
       vitoria.appendChild(imgBlack);
       mensagem.innerText = 'Gatinho Preto Ganhou! 🏆';
       vitoria.appendChild(mensagem);
     }
-    if (player1 == 'gatinhoLaranja') {
+    if (player1 === 'gatinhoLaranja') {
       vitoria.appendChild(imgOrange);
       mensagem.innerText = 'Gatinho Laranja Ganhou! 🏆';
       vitoria.appendChild(mensagem);
     }
-    if (player1 == 'gatinhoBranco') {
+    if (player1 === 'gatinhoBranco') {
       vitoria.appendChild(imgWhite);
       mensagem.innerText = 'Gatinho Branco Ganhou! 🏆';
       vitoria.appendChild(mensagem);
     }
-    if (player1 == 'gatinhoMisto') {
+    if (player1 === 'gatinhoMisto') {
       vitoria.appendChild(imgMisto);
       mensagem.innerText = 'Gatinho Tricolor Ganhou! 🏆';
       vitoria.appendChild(mensagem);
     }
   }
 
-  if (cat == 'player2') {
-    if (player2 == 'gatinhoPreto2') {
+  if (cat === 'player2') {
+    if (player2 === 'gatinhoPreto2') {
       vitoria.appendChild(imgBlack);
       mensagem.innerText = 'Gatinho Preto Ganhou! 🏆';
       vitoria.appendChild(mensagem);
     }
-    if (player2 == 'gatinhoLaranja2') {
+    if (player2 === 'gatinhoLaranja2') {
       vitoria.appendChild(imgOrange);
       mensagem.innerText = 'Gatinho Laranja Ganhou! 🏆';
       vitoria.appendChild(mensagem);
     }
-    if (player2 == 'gatinhoBranco2') {
+    if (player2 === 'gatinhoBranco2') {
       vitoria.appendChild(imgWhite);
       mensagem.innerText = 'Gatinho Branco Ganhou! 🏆';
       vitoria.appendChild(mensagem);
     }
-    if (player2 == 'gatinhoMisto2') {
+    if (player2 === 'gatinhoMisto2') {
       vitoria.appendChild(imgMisto);
       mensagem.innerText = 'Gatinho Tricolor Ganhou! 🏆';
       vitoria.appendChild(mensagem);
     }
   }
-  if (cat != 'empate') {
+  if (cat !== 'empate') {
     //criando rainbow
     let counter = 0;
     const intervalo = setInterval(function () {
@@ -485,7 +486,7 @@ function criarMsg(cat) {
       rainbow.setAttribute('class', 'rainbow');
       counter++;
 
-      if (counter == 10) {
+      if (counter === 10) {
         clearInterval(intervalo);
       }
       vitoria.appendChild(rainbow);
@@ -495,7 +496,7 @@ function criarMsg(cat) {
       const rainbow = document.createElement('div');
       rainbow.setAttribute('class', 'rainbow2');
 
-      if (counter == 10) {
+      if (counter === 10) {
         clearInterval(intervalo2);
       }
 
