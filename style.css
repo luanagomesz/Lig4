@@ -1,365 +1,670 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
 
-body{
+body {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url('background.jpg');
+  background-size: 360px 590px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position-y: 2vh;
+  background-color: #fedcd0;
+}
+#gameSpace {
+  margin-top: 30px;
+  position: relative;
+  display: none;
+  animation-name: tabuleiro;
+  animation-duration: 1s;
+}
+#instruções p {
+  width: 310px;
+  animation-name: fade;
+  animation-duration: 1s;
+}
+
+.tabelas {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.cedula {
+  height: 42px;
+  width: 42px;
+  border: 1px solid #421a1a;
+}
+.cedula:hover {
+  border: 1px solid #78b2ff;
+}
+
+.discoVermelho {
+  position: absolute;
+  width: 50px;
+  height: 40px;
+  background-color: transparent;
+  image-rendering: optimizeQuality;
+  animation-name: bolinha;
+  animation-duration: 1s;
+  animation-timing-function: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  transform: translateY(3px) translateX(-4px);
+}
+
+.discoPreto {
+  position: absolute;
+  width: 50px;
+  height: 40px;
+  background-color: transparent;
+  animation-name: bolinha;
+  animation-duration: 1s;
+  animation-timing-function: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  transform: translateY(3px) translateX(-4px);
+}
+/*/ keyframes /*/
+
+@keyframes bolinha {
+  0% {
+    transform: translateX(3px);
+    width: 30px;
+    height: 20px;
+    margin-top: -130px;
+  }
+  20% {
+    transform: translateX(-4px);
+    width: 50px;
+    height: 40px;
+  }
+  60% {
+    height: 65px;
+  }
+  80% {
+    height: 40px;
+    margin-top: 0px;
+  }
+  85% {
+    transform: translateY(9px) translateX(-6px);
+    height: 25px;
+    width: 60px;
+  }
+  90% {
+    transform: translateY(3px) translateX(-4px);
+    margin-top: -10px;
+    height: 40px;
+    width: 50px;
+  }
+  98% {
+    margin-top: -1px;
+    height: 39px;
+    width: 49px;
+  }
+  100% {
+    margin-top: 0px;
+    height: 40px;
+    width: 50px;
+  }
+}
+@keyframes tabuleiro {
+  from {
+    top: -100px;
+    opacity: 0;
+  }
+  to {
+    top: 0px;
+    opacity: 1;
+  }
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes rainbow {
+  0% {
+    opacity: 30%;
+    width: 50px;
+    margin-left: 60px;
+    background-color: #ff0000;
+  }
+  15% {
+    width: 70px;
+    opacity: 50%;
+    background-color: #ffa500;
+  }
+  30% {
+    opacity: 50%;
+    background-color: #ffff00;
+  }
+  45% {
+    background-color: #008000;
+  }
+  60% {
+    background-color: #0000ff;
+  }
+  75% {
+    width: 60px;
+    background-color: #4b0082;
+  }
+  90% {
+    opacity: 50%;
+    height: 20px;
+    transform: translateY(20px);
+    background-color: #ee82ee;
+  }
+  100% {
+    opacity: 0%;
+    transform: translateY(30px);
+    width: 0px;
+    height: 0px;
+    margin-left: -150px;
+    background-color: #ff0000;
+  }
+}
+@keyframes victoryCat {
+  0% {
+    transform: rotate(20deg);
+    height: 74px;
+    width: 100px;
+  }
+  10% {
+    height: 80px;
+    width: 97px;
+  }
+  20% {
+    transform: rotate(0deg);
+    height: 72px;
+    width: 110px;
+  }
+  40% {
+    transform: rotate(-20deg);
+    height: 78px;
+    width: 97px;
+  }
+  60% {
+    transform: rotate(0deg);
+    height: 74px;
+    width: 105px;
+  }
+  80% {
+    transform: rotate(20deg);
+    height: 80px;
+    width: 100px;
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes mensagem {
+  0% {
+    color: #ac0000;
+  }
+  15% {
+    color: #b87700;
+  }
+  30% {
+    color: #c9cc04;
+  }
+  45% {
+    color: #005800;
+  }
+  60% {
+    color: #0707a8;
+  }
+  75% {
+    color: #4b0082;
+  }
+  90% {
+    color: #9c469c;
+  }
+  100% {
+    color: #ac0000;
+  }
+}
+
+@keyframes selectedCat {
+  0% {
+    transform: rotate(20deg);
+  }
+  10% {
+  }
+  20% {
+    transform: rotate(0deg);
+  }
+  40% {
+    transform: rotate(-20deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+  80% {
+    background-color: #ffffff00;
+    transform: rotate(20deg);
+  }
+  100% {
+    background-color: #e26c61b7;
+    border-radius: 30%;
+    transform: rotate(0deg);
+  }
+}
+
+/*/ keyframes /*/
+
+/*/vitoria/*/
+#mensagemVitoria {
+  opacity: 80%;
+  position: absolute;
+  font-size: 25px;
+  width: 300px;
+  font-weight: 900;
+  margin-left: -150px;
+  margin-top: 140px;
+  animation-name: mensagem;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+  animation-timing-function: linear;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  color: #ffffff;
+}
+
+.victoryCat {
+  margin-left: 60px;
+  z-index: 2;
+  position: absolute;
+  margin-top: 25px;
+  width: 100px;
+  height: 74px;
+  background-color: transparent;
+  animation-name: victoryCat;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+  animation-timing-function: linear;
+  transform: translateY(3px) translateX(-4px);
+}
+#vitoria {
+  height: 300px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+.rainbow {
+  margin-top: 50px;
+  position: absolute;
+  opacity: 50%;
+  border-radius: 30px;
+  width: 70px;
+  height: 20px;
+  background-color: rgb(255, 248, 247);
+  animation-name: rainbow;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+.rainbow2 {
+  margin-top: 70px;
+  position: absolute;
+  opacity: 50%;
+  border-radius: 30px;
+  width: 20px;
+  height: 20px;
+  background-color: rgb(255, 248, 247);
+  animation-name: rainbow;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+#menu {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+header {
+  width: 100vw;
+  text-align: center;
+}
+header h1 {
+  animation-name: fade;
+  animation-duration: 1s;
+  padding-top: 60px;
+  padding-bottom: 30px;
+  margin-bottom: 20px;
+  font-weight: 900;
+  font-size: 80px;
+  letter-spacing: 5px;
+  padding-bottom: 15px;
+  font-family: 'Montserrat', sans-serif;
+  color: transparent;
+  background: #b36565;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  text-shadow: 0px 3px 3px rgba(255, 255, 255, 0.5);
+}
+#menu button {
+  animation-name: fade;
+  animation-duration: 1s;
+  box-shadow: 3px 4px 0px 0px #8a2a21;
+  background-color: #e26b61;
+  border-radius: 8px;
+  border: 1px solid #e26b61;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  padding: 7px 25px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #810e05;
+  margin-bottom: 30px;
+}
+#menu footer {
+  animation-name: fade;
+  animation-duration: 1s;
+  margin-top: 0px;
+  display: flex;
+  font-family: 'Montserrat', sans-serif;
+  flex-direction: column;
+}
+#menu footer p {
+  font-size: 15px;
+}
+#menu footer ul {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}
+#menu footer ul a {
+  text-decoration: none;
+  color: #8a2a21;
+}
+#menu footer ul a:hover {
+  text-decoration: none;
+  color: #e63120;
+}
+#menu button:hover {
+  background-color: #f24437;
+}
+#menu button:active {
+  position: relative;
+  top: 1px;
+  left: 2px;
+  box-shadow: 0px 2px 0px 0px #8a2a21;
+}
+
+#instruções {
+  width: 90vw;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+#instruções p {
+  margin-bottom: 20px;
+}
+#voltar {
+  animation-name: fade;
+  animation-duration: 1s;
+  margin-top: 15px;
+  display: none;
+  box-shadow: 3px 4px 0px 0px #8a2a21;
+
+  background-color: #e26b61;
+  border-radius: 8px;
+  border: 1px solid #e26b61;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 17px;
+  padding: 7px 25px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #810e05;
+}
+#voltar:hover {
+  background-color: #f24437;
+}
+#voltar:active {
+  position: relative;
+  top: 1px;
+  left: 2px;
+  box-shadow: 0px 2px 0px 0px #8a2a21;
+}
+
+#reset {
+  animation-name: fade;
+  animation-duration: 1s;
+  margin-top: 15px;
+  display: none;
+  box-shadow: 3px 4px 0px 0px #8a2a21;
+
+  background-color: #e26b61;
+  border-radius: 8px;
+  border: 1px solid #e26b61;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 17px;
+  padding: 7px 25px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #810e05;
+}
+
+#reset:hover {
+  background-color: #f24437;
+}
+
+#reset:active {
+  position: relative;
+  top: 1px;
+  left: 2px;
+  box-shadow: 0px 2px 0px 0px #8a2a21;
+}
+
+#jogadores {
+  width: 200px;
+}
+
+#escolherJogadores {
+  display: none;
+  flex-direction: column;
+  text-align: center;
+}
+
+#escolherJogadores h2 {
+  color: #e26b61;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  padding: 7px 25px;
+  text-decoration: none;
+}
+
+#escolherJogadores p {
+  color: #e26b61;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  padding: 7px 25px;
+  text-decoration: none;
+}
+
+.imgJogadores {
+  height: 60px;
+  width: 70px;
+}
+.imgSelecionado {
+  position: sticky;
+  animation-name: selectedCat;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+  height: 60px;
+  width: 70px;
+}
+
+.imgJogadores:hover {
+  cursor: pointer;
+}
+
+#player2 {
+  position: relative;
+}
+
+#alert {
+  animation-name: fade;
+  animation-duration: 1000ms;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  background-color: #e26b61;
+  border-radius: 8px;
+  border: 1px solid #e26b61;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+  padding: 10px 25px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #810e05;
+  position: absolute;
+  width: 200px;
+  margin-left: 165px;
+  transform: translateX(-50%) translateY(-75%);
+  margin-top: 150px;
+}
+
+@media (min-width: 1000px) {
+  body {
     height: 100vh;
     width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-image: url("background.jpg");
-    background-size: 360px 590px;
-    background-repeat:no-repeat;
+    background-image: url('background.jpg');
+    background-size: 550px 800px;
+    background-repeat: no-repeat;
     background-position: center;
     background-position-y: 2vh;
     background-color: #fedcd0;
-}
-#gameSpace{
- margin-top: 30px;
-position: relative;
- display: none;
- animation-name: tabuleiro;
- animation-duration: 1s;
-}
-#instruções p{
-    width: 310px;
+  }
+
+  #gameSpace {
+    margin-top: 80px;
+    position: relative;
+    display: none;
+    animation-name: tabuleiro;
+    animation-duration: 1s;
+  }
+  #instruções p {
+    width: 400px;
     animation-name: fade;
- animation-duration: 1s;
-}
-
-.tabelas{
-    display: flex;
-    flex-direction: column-reverse;
-}
-
-.cedula{
-    height: 42px;
-    width: 42px;
-    border: 1px solid #421a1a;
-
-}
-.cedula:hover{
-    border: 1px solid #78b2ff;
-}
-
-.discoVermelho{
-    position: absolute;
-    width: 50px;
-    height: 40px;
-    background-color: transparent;
-    image-rendering: optimizeQuality;
-    animation-name: bolinha;
     animation-duration: 1s;
-    animation-timing-function: cubic-bezier(0.6, -0.28, 0.735, 0.045);
-    transform: translateY(3px) translateX(-4px);;
-}
+  }
 
-.discoPreto{
-    position: absolute;
-    width: 50px;
-    height: 40px;
-    background-color: transparent;
-    animation-name: bolinha;
-    animation-duration: 1s;
-    animation-timing-function: cubic-bezier(0.6, -0.28, 0.735, 0.045);
-    transform: translateY(3px) translateX(-4px);;
-   
-}
-/*/ keyframes /*/
+  #vitoria {
+    margin-top: 100px;
+    height: 300px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+  }
 
-@keyframes bolinha{
-    0%{
-        transform: translateX(3px);
-        width: 30px;
-        height: 20px;
-        margin-top: -130px; 
-    }
-    20%{
-        transform: translateX(-4px);
-        width: 50px;
-        height: 40px;
-    }
-    60%{
-        height: 65px;
-    }
-    80%{
-        height: 40px;
-        margin-top: 0px; 
-    }
-    85%{
-       transform:translateY(9px) translateX(-6px);
-        height: 25px;
-        width: 60px;
-    }
-    90%{
-        transform: translateY(3px) translateX(-4px);
-        margin-top:-10px;
-        height: 40px;
-        width: 50px;
-    }
-    98%{
-        margin-top: -1px;
-        height: 39px;
-        width: 49px;
-    }
-    100%{
-        margin-top: 0px;
-        height: 40px;
-        width: 50px;
-    }
-}
-@keyframes tabuleiro{
-    from{ 
-        top: -100px;
-        opacity: 0;
-    }
-    to{ 
-        top: 0px;
-        opacity: 1;
-    
-    }
-}
-@keyframes fade{
-    from{ 
-        opacity: 0;
-    }
-    to{ 
-        opacity: 1;
-    
-    }
-}
-@keyframes rainbow{
-    0%{ opacity: 30%;
-        width: 50px;
-        margin-left: 60px;
-        background-color: #ff0000;
-    }
-    15%{ 
-        width: 70px;
-        opacity: 50%;
-        background-color: #ffa500;
-    
-    }
-    30%{opacity: 50%;
-        background-color: #ffff00;
-    }
-    45%{
-        background-color: #008000;
-    }
-    60%{
-        background-color:	#0000ff;
-    }
-    75%{
-         width: 60px;
-        background-color: 	#4b0082;
-    }
-    90%{ opacity: 50%;
-        height: 20px;
-        transform: translateY(20px);
-        background-color: #ee82ee
-    }
-    100%{ opacity: 0%;
-        transform: translateY(30px);
-        width: 0px;
-        height: 0px;
-        margin-left: -150px;
-        background-color: #ff0000;
-    }
-}
-@keyframes victoryCat{
-   0%{
-
-       transform: rotate(20deg);
-       height: 74px;
-       width: 100px;
-   }
-   10%{
-
-    height: 80px;
-    width: 97px;
-   }
-   20%{ 
-  
-    transform: rotate(0deg);
-    height: 72px;
-    width: 110px;
-   }
-   40%{
-
-       transform: rotate(-20deg);
-       height: 78px;
-       width: 97px;
-   }
-   60%{
-
-       transform: rotate(0deg);
-       height: 74px;
-       width: 105px;
-   }
-   80%{
-
-    transform: rotate(20deg);
-    height: 80px;
-    width: 100px;
-}
-   100%{
- 
-    transform: rotate(0deg);
-   }
-}
-@keyframes mensagem{
-    0%{ color: #ac0000;
-    }
-    15%{ 
-       color: #b87700;
-    
-    }
-    30%{color: #c9cc04;
-    }
-    45%{
-     color: #005800;
-    }
-    60%{
-       color:	#0707a8;
-    }
-    75%{
-        color: 	#4b0082;
-    }
-    90%{ 
-        color: #9c469c
-    }
-    100%{ 
-       color: #ac0000;
-    }
-}
-
-@keyframes selectedCat{
-    0%{
- 
-        transform: rotate(20deg);
-      
-    }
-    10%{
- 
-  
-    }
-    20%{ 
-   
-     transform: rotate(0deg);
-
-    }
-    40%{
- 
-        transform: rotate(-20deg);
- 
-    }
-    60%{
- 
-        transform: rotate(0deg);
-    
-    }
-    80%{
-        background-color: #ffffff00;;
-     transform: rotate(20deg);
-     
- }
-    100%{
-        background-color: #e26c61b7;;
-        border-radius: 30%;
-     transform: rotate(0deg);
-    }
- }
-
-/*/ keyframes /*/
-
-
-
-/*/vitoria/*/
-#mensagemVitoria{
+  #mensagemVitoria {
     opacity: 80%;
     position: absolute;
-    font-size: 25px;
-    width: 300px;
+    font-size: 30px;
+    width: 400px;
     font-weight: 900;
-    margin-left: -150px;
+    margin-left: -195px;
     margin-top: 140px;
     animation-name: mensagem;
-    animation-duration: 5s ;
+    animation-duration: 5s;
     animation-iteration-count: infinite;
     animation-direction: alternate-reverse;
     animation-timing-function: linear;
     text-align: center;
     font-family: 'Montserrat', sans-serif;
-    color: #FFFFFF;
+    color: #ffffff;
+  }
 
-
-}
-
-.victoryCat{
-    
-    margin-left: 60px;
-    z-index: 2;
-    position: absolute;
-    margin-top: 25px;
-    width: 100px;
-    height: 74px;
-    background-color: transparent;
-    animation-name: victoryCat;
-    animation-duration: 3s ;
-    animation-iteration-count: infinite;
-    animation-direction: alternate-reverse;
-    animation-timing-function: linear;
-    transform: translateY(3px) translateX(-4px);;
-   
-}
-#vitoria{
-    height: 300px;
-    display: none;
-    flex-direction: column;
-    align-items: center;
-}
-.rainbow{
-    margin-top: 50px;
-    position: absolute;
-    opacity: 50%;
-    border-radius: 30px;
-    width: 70px;
-    height: 20px;
-    background-color: rgb(255, 248, 247);
-    animation-name: rainbow;
-    animation-duration: 1s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-}
-.rainbow2{
-    margin-top: 70px;
-    position: absolute;
-    opacity: 50%;
-    border-radius: 30px;
-    width: 20px;
-    height: 20px;
-    background-color: rgb(255, 248, 247);
-    animation-name: rainbow;
-    animation-duration:1s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-}
-
-
-#menu{
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-header{
-   
-    width: 100vw;
-    text-align: center;
-   
-}
-header h1{
+  #voltar {
     animation-name: fade;
     animation-duration: 1s;
+    margin-top: 20px;
+    display: none;
+    box-shadow: 3px 4px 0px 0px #8a2a21;
+
+    background-color: #e26b61;
+    border-radius: 8px;
+    border: 1px solid #e26b61;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 25px;
+    padding: 7px 25px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #810e05;
+  }
+
+  #reset {
+    animation-name: fade;
+    animation-duration: 1s;
+    margin-top: 20px;
+    display: none;
+    box-shadow: 3px 4px 0px 0px #8a2a21;
+
+    background-color: #e26b61;
+    border-radius: 8px;
+    border: 1px solid #e26b61;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    padding: 7px 25px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #810e05;
+  }
+
+  #menu button {
+    animation-name: fade;
+    animation-duration: 1s;
+    box-shadow: 3px 4px 0px 0px #8a2a21;
+    background-color: #e26b61;
+    border-radius: 8px;
+    border: 1px solid #e26b61;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 30px;
+    padding: 7px 50px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #810e05;
+    margin-bottom: 50px;
+  }
+
+  #jogadores {
+    width: 400px;
+  }
+  header {
+    width: 100vw;
+    text-align: center;
+  }
+  header h1 {
+    animation-name: fade;
+    animation-duration: 1s;
+    margin-top: 20px;
     padding-top: 60px;
     padding-bottom: 30px;
     margin-bottom: 20px;
@@ -367,373 +672,24 @@ header h1{
     font-size: 80px;
     letter-spacing: 5px;
     padding-bottom: 15px;
-    font-family:'Montserrat', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     color: transparent;
     background: #b36565;
-   -webkit-background-clip: text;
+    -webkit-background-clip: text;
     -moz-background-clip: text;
     background-clip: text;
-    text-shadow: 0px 3px 3px rgba(255,255,255,0.5);
-}
-#menu button{
+    text-shadow: 0px 3px 3px rgba(255, 255, 255, 0.5);
+  }
+  #menu footer {
     animation-name: fade;
     animation-duration: 1s;
-    box-shadow: 3px 4px 0px 0px #8a2a21;
-	background-color:#e26b61;
-	border-radius:8px;
-	border:1px solid #e26b61;
-	cursor:pointer;
-	color:#ffffff;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-	font-size:20px;
-	padding:7px 25px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #810e05;
-    margin-bottom: 30px;
-}
-#menu footer{
-    animation-name: fade;
-    animation-duration: 1s;
-    margin-top: 0px;
+    margin-top: 30px;
     display: flex;
     font-family: 'Montserrat', sans-serif;
     flex-direction: column;
-   
-}
-#menu footer p{
-   font-size: 15px;
-}
-#menu footer ul{
-  text-align: center;
-    font-family: 'Montserrat', sans-serif;
-
-}
-#menu footer ul a{
-
-   text-decoration: none;
-   color: #8a2a21;;
   }
-  #menu footer ul a:hover{
-
-    text-decoration: none;
-    color: #e63120;;
-   }
-#menu button:hover {
-    background-color:#f24437;
-}
-#menu button:active {
-	position:relative;
-	top:1px;
-    left:2px;
-    box-shadow: 0px 2px 0px 0px #8a2a21;
-}
-
-
-#instruções{
- width: 90vw;
- display: none;
- flex-direction: column;
- align-items: center;
- text-align: center;
- font-family: 'Montserrat', sans-serif;
-}
-
-#instruções p{
-  margin-bottom: 20px;
-}
-#voltar{
-    animation-name: fade;
-    animation-duration: 1s;
-    margin-top: 15px;
-    display: none;
-    box-shadow: 3px 4px 0px 0px #8a2a21;
-	
-	background-color:#e26b61;
-	border-radius:8px;
-	border:1px solid #e26b61;
-	cursor:pointer;
-	color:#ffffff;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 300;
-	font-size:17px;
-	padding:7px 25px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #810e05;
-}
-#voltar:hover {
-	background-color:#f24437;
-}
-#voltar:active {
-	position:relative;
-	top:1px;
-    left:2px;
-    box-shadow: 0px 2px 0px 0px #8a2a21;
-}
-
-#reset{
-    animation-name: fade;
-    animation-duration: 1s;
-    margin-top: 15px;
-    display: none;
-    box-shadow: 3px 4px 0px 0px #8a2a21;
-	
-	background-color:#e26b61;
-	border-radius:8px;
-	border:1px solid #e26b61;
-	cursor:pointer;
-	color:#ffffff;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 300;
-	font-size:17px;
-	padding:7px 25px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #810e05;
-}
-
-#reset:hover {
-	background-color:#f24437;
-}
-
-#reset:active{
-    position:relative;
-	top:1px;
-    left:2px;
-    box-shadow: 0px 2px 0px 0px #8a2a21;
-}
-
-
-#jogadores{
-    width: 200px;
-}
-
-#escolherJogadores{
-    display: none;
-    flex-direction: column;
-    text-align: center;
-}
-
-#escolherJogadores h2{
-	color:#e26b61;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-	font-size:17px;
-	padding:7px 25px;
-	text-decoration:none;
-}
-
-#escolherJogadores p{
-	color:#e26b61;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-	font-size:17px;
-	padding:7px 25px;
-	text-decoration:none;
-}
-
-.imgJogadores{
-    height: 60px;
-    width: 70px;
-}
-.imgSelecionado{
-    position: sticky;
-    animation-name: selectedCat;
-    animation-fill-mode: forwards;
-    animation-duration: 1s;
-    height: 60px;
-    width: 70px;
-   
-    
-}
-
-.imgJogadores:hover{
-   cursor: pointer;
-}
-
-#player2{
-    position: relative;
-}
-
-#alert{
-    animation-name: fade;
-    animation-duration: 1000ms;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-    background-color:#e26b61;
-	border-radius:8px;
-	border:1px solid #e26b61;
-	cursor:pointer;
-	color:#ffffff;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 300;
-	font-size:20px;
-	padding:10px 25px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #810e05;
-    position: absolute;
-    width: 200px;
-    margin-left: 165px;
-    transform: translateX(-50%) translateY(-75%);
-    margin-top: 150px;
-}
-
-
-@media (min-width: 1000px) {
-    body{
-        height: 100vh;
-        width: 100vw;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background-image: url("background.jpg");
-        background-size: 550px 800px;
-        background-repeat:no-repeat;
-        background-position: center;
-        background-position-y: 2vh;
-        background-color: #fedcd0;
-    }
-    
-    #gameSpace{
-        margin-top: 80px;
-       position: relative;
-        display: none;
-        animation-name: tabuleiro;
-        animation-duration: 1s;
-       }
-       #instruções p{
-           width: 400px;
-           animation-name: fade;
-        animation-duration: 1s;
-       }
-       
-    
-       #vitoria{
-        margin-top: 100px;
-        height: 300px;
-        display: none;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    #mensagemVitoria{
-        opacity: 80%;
-        position: absolute;
-        font-size: 30px;
-        width: 400px;
-        font-weight: 900;
-        margin-left: -195px;
-        margin-top: 140px;
-        animation-name: mensagem;
-        animation-duration: 5s ;
-        animation-iteration-count: infinite;
-        animation-direction: alternate-reverse;
-        animation-timing-function: linear;
-        text-align: center;
-        font-family: 'Montserrat', sans-serif;
-        color: #FFFFFF;
-    
-    
-    }
-
-    #voltar{
-        animation-name: fade;
-        animation-duration: 1s;
-        margin-top: 20px;
-        display: none;
-        box-shadow: 3px 4px 0px 0px #8a2a21;
-        
-        background-color:#e26b61;
-        border-radius:8px;
-        border:1px solid #e26b61;
-        cursor:pointer;
-        color:#ffffff;
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 300;
-        font-size: 25px;
-        padding:7px 25px;
-        text-decoration:none;
-        text-shadow:0px 1px 0px #810e05;
-    }
-   
-    #reset{
-        animation-name: fade;
-        animation-duration: 1s;
-        margin-top: 20px;
-        display: none;
-        box-shadow: 3px 4px 0px 0px #8a2a21;
-        
-        background-color:#e26b61;
-        border-radius:8px;
-        border:1px solid #e26b61;
-        cursor:pointer;
-        color:#ffffff;
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 300;
-        font-size:20px;
-        padding:7px 25px;
-        text-decoration:none;
-        text-shadow:0px 1px 0px #810e05;
-    }
-   
-    #menu button{
-        animation-name: fade;
-        animation-duration: 1s;
-        box-shadow: 3px 4px 0px 0px #8a2a21;
-        background-color:#e26b61;
-        border-radius:8px;
-        border:1px solid #e26b61;
-        cursor:pointer;
-        color:#ffffff;
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 400;
-        font-size:30px;
-        padding:7px 50px;
-        text-decoration:none;
-        text-shadow:0px 1px 0px #810e05;
-        margin-bottom: 50px;
-    }
-
-    #jogadores{
-        width: 400px;
-       
-    }
-    header{
-   
-        width: 100vw;
-        text-align: center;
-       
-    }
-    header h1{
-        animation-name: fade;
-        animation-duration: 1s;
-        margin-top: 20px;
-        padding-top: 60px;
-        padding-bottom: 30px;
-        margin-bottom: 20px;
-        font-weight: 900;
-        font-size: 80px;
-        letter-spacing: 5px;
-        padding-bottom: 15px;
-        font-family:'Montserrat', sans-serif;
-        color: transparent;
-        background: #b36565;
-       -webkit-background-clip: text;
-        -moz-background-clip: text;
-        background-clip: text;
-        text-shadow: 0px 3px 3px rgba(255,255,255,0.5);
-    }
-    #menu footer{
-        animation-name: fade;
-        animation-duration: 1s;
-        margin-top: 30px;
-        display: flex;
-        font-family: 'Montserrat', sans-serif;
-        flex-direction: column;
-       
-    }
-    #menu footer p{
-       font-size: 20px;
-       margin-bottom: 5px;
-    }
-    
+  #menu footer p {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
 }

@@ -1,14 +1,18 @@
-// função reset 
-const reset = document.getElementById('reset')
-reset.addEventListener('click', resetar)
+'use strict';
+
+/**
+ * Reset game board
+ * Clears all game cells and resets the disc counter
+ */
 function resetar() {
-    counterDisco =1
-    let cells = document.getElementsByClassName("cedula")
-    let cellsArr = []
-    for (let i = 0; i < cells.length; i++){
-        cellsArr.push(cells[i])
-    }
-    for(let i= 0; i< cellsArr.length; i++){
-        cellsArr[i].innerHTML = ''
-    }
+  counterDisco = 1;
+  const cells = document.getElementsByClassName('cedula');
+  const cellsArr = Array.from(cells);
+  cellsArr.forEach((cell) => {
+    cell.innerHTML = '';
+  });
 }
+
+// Add event listener for reset button
+const reset = document.getElementById('reset');
+reset.addEventListener('click', resetar);
