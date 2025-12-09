@@ -5,10 +5,11 @@
 // ============================================================
 const BOARD_COLUMNS = 7;
 const BOARD_ROWS = 6;
-const WIN_CONDITION = 4;
+const WIN_CONDITION = 4; // eslint-disable-line no-unused-vars
 const ALERT_TIMEOUT = 2000;
 
-// Game state
+// Game state (declared globally for cross-file access)
+/* global resetar:readonly */
 let counterDisco = 1;
 
 // ============================================================
@@ -39,7 +40,7 @@ function showAlert(message, container) {
 // MENU EVENT HANDLERS
 // ============================================================
 document.getElementById('jogar').addEventListener('click', function () {
-  let interval = setInterval(iniciarjogo, 100);
+  const interval = setInterval(iniciarjogo, 100);
   function iniciarjogo() {
     counterDisco = 1;
     document.getElementById('reset').style.display = 'block';
@@ -56,7 +57,7 @@ document.getElementById('jogar').addEventListener('click', function () {
 document
   .getElementById('buttonInstruções')
   .addEventListener('click', function () {
-    let interval = setInterval(instruções, 100);
+    const interval = setInterval(instruções, 100);
     function instruções() {
       document.getElementById('menu').style.display = 'none';
       document.getElementById('instruções').style.display = 'flex';
@@ -71,27 +72,25 @@ document.getElementById('voltar').addEventListener('click', function () {
   } else if (player2 == undefined) {
     showAlert('Escolha um Gatinho Player 2😸', escolherJogadores);
   } else {
-    voltar();
-    function voltar() {
-      resetar();
-      document.getElementById('vitoria').style.display = 'none';
-      document.getElementById('vitoria').innerHTML = '';
-      document.getElementById('reset').style.display = 'none';
-      document.getElementById('menu').style.display = 'flex';
-      document.getElementById('instruções').style.display = 'none';
-      document.getElementById('gameSpace').style.display = 'none';
-      document.getElementById('voltar').style.display = 'none';
-      document.getElementById('header').style.fontSize = '80px';
-      document.getElementById('header').style.paddingBottom = '15px';
-      document.getElementById('header').style.paddingTop = '60px';
-      document.getElementById('escolherJogadores').style.display = 'none';
-      document.getElementById('header').style.marginBottom = '20px';
-    }
+    // Return to main menu
+    resetar();
+    document.getElementById('vitoria').style.display = 'none';
+    document.getElementById('vitoria').innerHTML = '';
+    document.getElementById('reset').style.display = 'none';
+    document.getElementById('menu').style.display = 'flex';
+    document.getElementById('instruções').style.display = 'none';
+    document.getElementById('gameSpace').style.display = 'none';
+    document.getElementById('voltar').style.display = 'none';
+    document.getElementById('header').style.fontSize = '80px';
+    document.getElementById('header').style.paddingBottom = '15px';
+    document.getElementById('header').style.paddingTop = '60px';
+    document.getElementById('escolherJogadores').style.display = 'none';
+    document.getElementById('header').style.marginBottom = '20px';
   }
 });
 
 document.getElementById('jogadores').addEventListener('click', function () {
-  let interval = setInterval(jogadores, 150);
+  const interval = setInterval(jogadores, 150);
   function jogadores() {
     document.getElementById('menu').style.display = 'none';
     document.getElementById('escolherJogadores').style.display = 'flex';
@@ -104,16 +103,16 @@ document.getElementById('jogadores').addEventListener('click', function () {
 // ============================================================
 // GAME BOARD INITIALIZATION
 // ============================================================
-game = document.getElementById('gameSpace');
+const game = document.getElementById('gameSpace');
 
 // Create board dynamically
 for (let i = 1; i <= BOARD_COLUMNS; i++) {
-  let tabela = document.createElement('div');
+  const tabela = document.createElement('div');
   tabela.setAttribute('id', 'tabela' + i);
   tabela.setAttribute('class', 'tabelas');
   game.appendChild(tabela);
   for (let k = 1; k <= BOARD_ROWS; k++) {
-    let cedula = document.createElement('div');
+    const cedula = document.createElement('div');
     cedula.setAttribute('class', 'cedula');
     document.getElementById('tabela' + i).appendChild(cedula);
   }
@@ -184,7 +183,7 @@ divPlayer2.addEventListener('click', function (e) {
 function CriarDisco() {
   counterDisco++;
   if (counterDisco % 2 != 0) {
-    let disco = document.createElement('img');
+    const disco = document.createElement('img');
     if (player2 === 'gatinhoPreto2') {
       disco.src = 'catblack.png';
     }
@@ -201,7 +200,7 @@ function CriarDisco() {
     return disco;
   }
   if (counterDisco % 2 == 0) {
-    let disco = document.createElement('img');
+    const disco = document.createElement('img');
     if (player1 === 'gatinhoPreto') {
       disco.src = 'catblack.png';
     }
@@ -225,7 +224,7 @@ function CriarDisco() {
  */
 function selecionar(e) {
   let tabela = e.target.parentElement;
-  let criaDisco = CriarDisco();
+  const criaDisco = CriarDisco();
   if (tabela.classList.contains('cedula')) {
     tabela = tabela.parentElement;
   }
@@ -251,16 +250,16 @@ game.addEventListener('click', selecionar);
  * Check for horizontal win condition
  */
 function verificaH() {
-  let tabela = [...game.children];
+  const tabela = [...game.children];
   for (let i = 0; i < tabela.length; i++) {
     for (let j = 0; j < tabela.length - 3; j++) {
-      let cell = tabela[j].children[i];
+      const cell = tabela[j].children[i];
       if (cell === undefined) continue;
-      let cellCount = cell.childElementCount;
+      const cellCount = cell.childElementCount;
       if (cellCount !== 0) {
-        let cell2 = tabela[j + 1].children[i];
-        let cell3 = tabela[j + 2].children[i];
-        let cell4 = tabela[j + 3].children[i];
+        const cell2 = tabela[j + 1].children[i];
+        const cell3 = tabela[j + 2].children[i];
+        const cell4 = tabela[j + 3].children[i];
         if (
           cell2.childElementCount !== 0 &&
           cell3.childElementCount !== 0 &&
@@ -287,11 +286,11 @@ function verificaH() {
  * Check for diagonal win condition (both directions)
  */
 function vitoriaDiagonal() {
-  let array = game.children;
+  const array = game.children;
   for (let i = 0; i < array.length - 4; i++) {
     for (let k = 0; k < array.length - 3; k++) {
       //diagonal esquerda
-      cell = array[k].children[i];
+      let cell = array[k].children[i];
       if (cell.childElementCount !== 0) {
         cell = cell.lastElementChild;
 
@@ -319,7 +318,7 @@ function vitoriaDiagonal() {
     }
     for (let x = array.length - 1; x > 2; x--) {
       //diagonal pra direita
-      cellx = array[x].children[i];
+      let cellx = array[x].children[i];
 
       if (cellx.childElementCount !== 0) {
         cellx = cellx.lastElementChild;
@@ -352,15 +351,15 @@ function vitoriaDiagonal() {
  * Check for vertical win condition
  */
 function verificaV() {
-  let tabela = [...game.children];
+  const tabela = [...game.children];
   for (let i = 0; i < tabela.length - 4; i++) {
     for (let j = 0; j < tabela.length; j++) {
-      let cell = tabela[j].children[i];
-      let cellCount = cell.childElementCount;
+      const cell = tabela[j].children[i];
+      const cellCount = cell.childElementCount;
       if (cellCount !== 0) {
-        let cell2 = tabela[j].children[i + 1];
-        let cell3 = tabela[j].children[i + 2];
-        let cell4 = tabela[j].children[i + 3];
+        const cell2 = tabela[j].children[i + 1];
+        const cell3 = tabela[j].children[i + 2];
+        const cell4 = tabela[j].children[i + 3];
         if (
           cell2.childElementCount !== 0 &&
           cell3.childElementCount !== 0 &&
@@ -407,28 +406,26 @@ function criarMsg(cat) {
   document.getElementById('gameSpace').style.display = 'none';
   document.getElementById('reset').style.display = 'none';
 
-  let imgBlack = document.createElement('img');
+  const imgBlack = document.createElement('img');
   imgBlack.src = 'catblack.png';
   imgBlack.setAttribute('class', 'victoryCat');
 
-  let imgMisto = document.createElement('img');
+  const imgMisto = document.createElement('img');
   imgMisto.src = 'catmisto.png';
   imgMisto.setAttribute('class', 'victoryCat');
 
-  let imgOrange = document.createElement('img');
+  const imgOrange = document.createElement('img');
   imgOrange.src = 'catorange.png';
   imgOrange.setAttribute('class', 'victoryCat');
 
-  let imgWhite = document.createElement('img');
+  const imgWhite = document.createElement('img');
   imgWhite.src = 'catwhite.png';
   imgWhite.setAttribute('class', 'victoryCat');
 
-  let vitoria = document.getElementById('vitoria');
+  const vitoria = document.getElementById('vitoria');
   vitoria.style.display = 'block';
-  rainbow = document.createElement('div');
-  rainbow.setAttribute('class', 'rainbow');
 
-  let mensagem = document.createElement('h1');
+  const mensagem = document.createElement('h1');
   mensagem.setAttribute('id', 'mensagemVitoria');
 
   if (cat == 'empate') {
@@ -483,8 +480,8 @@ function criarMsg(cat) {
   if (cat != 'empate') {
     //criando rainbow
     let counter = 0;
-    let intervalo = setInterval(function () {
-      rainbow = document.createElement('div');
+    const intervalo = setInterval(function () {
+      const rainbow = document.createElement('div');
       rainbow.setAttribute('class', 'rainbow');
       counter++;
 
@@ -494,8 +491,8 @@ function criarMsg(cat) {
       vitoria.appendChild(rainbow);
     }, 200);
 
-    let intervalo2 = setInterval(function () {
-      rainbow = document.createElement('div');
+    const intervalo2 = setInterval(function () {
+      const rainbow = document.createElement('div');
       rainbow.setAttribute('class', 'rainbow2');
 
       if (counter == 10) {

@@ -1,5 +1,7 @@
 'use strict';
 
+/* global counterDisco:writable */
+
 /**
  * Reset game board
  * Clears all game cells and resets the disc counter

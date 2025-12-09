@@ -15,14 +15,5 @@
     "prefer-const": "warn",
     "no-var": "warn"
   },
-  "globals": {
-    "game": "writable",
-    "player1": "writable",
-    "player2": "writable",
-    "counterDisco": "writable",
-    "selecionado1": "writable",
-    "selecionado2": "writable",
-    "escolherJogadores": "readonly",
-    "resetar": "readonly"
-  }
+  "globals": {}
 }

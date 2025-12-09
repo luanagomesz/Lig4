@@ -4,18 +4,22 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Jogo Lig-4 (Connect Four) com tema de gatinhos"
+    />
     <link rel="stylesheet" href="./reset.css" />
     <link rel="stylesheet" href="./style.css" />
-    <title>Lig-4</title>
+    <title>Lig-4 - Jogo Connect Four</title>
   </head>
   <body>
     <header>
       <h1 id="header">Lig-4</h1>
     </header>
-    <div id="menu">
-      <button id="jogar">Jogar</button>
-      <button id="buttonInstruções">Instruções</button>
-      <button id="jogadores">Escolher Jogadores</button>
+    <nav id="menu" role="navigation" aria-label="Menu principal">
+      <button id="jogar" type="button">Jogar</button>
+      <button id="buttonInstruções" type="button">Instruções</button>
+      <button id="jogadores" type="button">Escolher Jogadores</button>
       <footer>
         <p>desenvolvido por</p>
         <ul>
@@ -24,18 +28,18 @@
           <li><a href="https://github.com/rodrigocezzar">rodrigocezzar</a></li>
         </ul>
       </footer>
-    </div>
+    </nav>
 
-    <div id="instruções">
+    <section id="instruções" aria-label="Instruções do jogo">
       <p>
         No Lig-4, um jogador assume a cor Vermelha e o outro assume a cor Preta.
         Os jogadores se alternam inserindo suas peças em uma das 7 colunas de
         uma tabela 7x6. O primeiro jogador que conseguir quatro de suas peças em
         uma linha (seja horizontal, vertical ou diagonal) vence.
       </p>
-    </div>
+    </section>
 
-    <div id="escolherJogadores">
+    <section id="escolherJogadores" aria-label="Seleção de jogadores">
       <h2>Clique no gatinho de sua escolha</h2>
       <div id="player1">
         <p>Player 1:</p>
@@ -91,12 +95,23 @@
           id="gatinhoBranco2"
         />
       </div>
-    </div>
+    </section>
 
-    <main id="gameSpace"></main>
-    <div id="vitoria"><span></span></div>
-    <button id="reset"><span></span> Recomeçar</button>
-    <button id="voltar"><span></span> Voltar ao menu inicial</button>
+    <main id="gameSpace" role="main" aria-label="Tabuleiro do jogo"></main>
+    <section
+      id="vitoria"
+      role="status"
+      aria-live="polite"
+      aria-label="Resultado do jogo"
+    >
+      <span></span>
+    </section>
+    <button id="reset" type="button" aria-label="Recomeçar jogo">
+      <span></span> Recomeçar
+    </button>
+    <button id="voltar" type="button" aria-label="Voltar ao menu inicial">
+      <span></span> Voltar ao menu inicial
+    </button>
 
     <script src="./reset.js"></script>
     <script src="./script.js"></script>
